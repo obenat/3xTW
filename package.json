@@ -1,0 +1,19 @@
+{
+  "name": "3xtw",
+  "version": "1.0.0",
+  "description": "Bus, Train, Weather tracker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/obenat/3xTW.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/obenat/3xTW/issues"
+  },
+  "homepage": "https://github.com/obenat/3xTW#readme"
+}
