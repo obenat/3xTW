@@ -1,12 +1,34 @@
+const WEATHER_API_KEY = "e5d1be98e9c5ef580a9e3ed6b627664b";
+
+async function getWeather(lat, lon)
+{
+    return fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`)
+            .then((response) => response.json())
+            .then((responseJSON) => {return responseJSON});
+}
+
+async function get
+/*async caller() {
+    const json = await this.getJSON();  // command waits until completion
+    console.log(json.hello);            // hello is now available
+}*/
+
+async function testSearch()
+{
+    let test = await this.getWeather("46.8850", "11.4386");
+    console.log(test);
+}
+
 var datasetBuerger = ""
 var datasetWeatherApi = ""
 function search()
 {
     //console.log("test");
     //console.log(datasetBuerger.rows[0]);
-    console.log(datasetWeatherApi);
+    console.log("test");
+    //console.log(await getWeather("46.8850", "11.4386"));
 }
-
+/*
 fetch('http://daten.buergernetz.bz.it/services/weather/station?categoryId=1&lang=de&format=json')
   .then(response => response.json())
   .then(data => 
@@ -69,3 +91,9 @@ coord": {
   "name": "Sterzing",
   "cod": 200,
   */
+
+  //Api mit parameter(wetter)
+
+
+
+//Fahrplan Api https://efa.sta.bz.it/apb/XML_DM_REQUEST?&locationServerActive=1&stateless=1&type_dm=any&name_dm=Brixen%20Brixen%20Dantestra%C3%9Fe&mode=direct&outputFormat=json
