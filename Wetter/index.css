@@ -103,7 +103,22 @@ header .sticky ul li a{
     border-style: none;
 }
 
-#demo{
-    background-color: white;
+#demoA{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
 }
+
+#demoA table{
+    background-color:black;
+    width: 80%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+#demoA table> tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+  }
