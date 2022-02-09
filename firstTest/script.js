@@ -7,7 +7,6 @@ async function getWeather(lat, lon)
             .then((responseJSON) => {return responseJSON});
 }
 
-async function get
 /*async caller() {
     const json = await this.getJSON();  // command waits until completion
     console.log(json.hello);            // hello is now available

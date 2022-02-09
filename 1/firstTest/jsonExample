@@ -1,0 +1,3529 @@
+{
+   "parameters":[
+      {
+         "name":"serverID",
+         "value":"EFA01"
+      },
+      {
+         "name":"requestID",
+         "value":"0"
+      },
+      {
+         "name":"sessionID",
+         "value":"0"
+      },
+      {
+         "name":"calcTime",
+         "value":"291.286"
+      },
+      {
+         "name":"serverTime",
+         "value":"2022-02-09T14:37:45"
+      }
+   ],
+   "dm":{
+      "message":[
+         {
+            "name":"code",
+            "value":"-8010"
+         },
+         {
+            "name":"error",
+            "value":""
+         },
+         {
+            "name":"type",
+            "value":""
+         },
+         {
+            "name":"module",
+            "value":"BROKER"
+         }
+      ],
+      "input":{
+         "input":"Brixen Brixen Bahnhof"
+      },
+      "points":{
+         "point":{
+            "usage":"dm",
+            "type":"any",
+            "name":"Brixen, Bahnhof Brixen",
+            "stateless":"66000998",
+            "anyType":"stop",
+            "sort":"2",
+            "quality":"625",
+            "best":"1",
+            "object":"Bahnhof Brixen",
+            "mainLoc":"Brixen",
+            "modes":"0,5,6",
+            "ref":{
+               "id":"66000998",
+               "gid":"it:22021:998",
+               "omc":"22021011",
+               "placeID":"4",
+               "place":"Brixen",
+               "coords":"702551.99730,323652.00100"
+            },
+            "infos":null
+         }
+      },
+      "itdOdvAssignedStops":{
+         "stopID":"66000998",
+         "name":"Bahnhof Brixen",
+         "x":"702551.99730",
+         "y":"323652.00100",
+         "mapName":"APBV",
+         "value":"66000998:Bahnhof Brixen",
+         "place":"Brixen",
+         "nameWithPlace":"Brixen, Bahnhof Brixen",
+         "distanceTime":"0",
+         "isTransferStop":"0",
+         "vm":"100",
+         "gid":"it:22021:998"
+      }
+   },
+   "arr":{
+      "input":{
+         "input":""
+      },
+      "points":null
+   },
+   "dateTime":{
+      "deparr":"dep",
+      "ttpFrom":"20211212",
+      "ttpTo":"20221210",
+      "year":"2022",
+      "month":"2",
+      "day":"9",
+      "hour":"14",
+      "minute":"37"
+   },
+   "dateRange":[
+      {
+         "day":"09",
+         "month":"02",
+         "year":"2022",
+         "weekday":"4"
+      },
+      {
+         "day":"10",
+         "month":"02",
+         "year":"2022",
+         "weekday":"5"
+      },
+      {
+         "day":"11",
+         "month":"02",
+         "year":"2022",
+         "weekday":"6"
+      },
+      {
+         "day":"12",
+         "month":"02",
+         "year":"2022",
+         "weekday":"7"
+      },
+      {
+         "day":"13",
+         "month":"02",
+         "year":"2022",
+         "weekday":"1"
+      },
+      {
+         "day":"14",
+         "month":"02",
+         "year":"2022",
+         "weekday":"2"
+      },
+      {
+         "day":"15",
+         "month":"02",
+         "year":"2022",
+         "weekday":"3"
+      },
+      {
+         "day":"16",
+         "month":"02",
+         "year":"2022",
+         "weekday":"4"
+      },
+      {
+         "day":"17",
+         "month":"02",
+         "year":"2022",
+         "weekday":"5"
+      },
+      {
+         "day":"18",
+         "month":"02",
+         "year":"2022",
+         "weekday":"6"
+      },
+      {
+         "day":"19",
+         "month":"02",
+         "year":"2022",
+         "weekday":"7"
+      },
+      {
+         "day":"20",
+         "month":"02",
+         "year":"2022",
+         "weekday":"1"
+      },
+      {
+         "day":"21",
+         "month":"02",
+         "year":"2022",
+         "weekday":"2"
+      },
+      {
+         "day":"22",
+         "month":"02",
+         "year":"2022",
+         "weekday":"3"
+      },
+      {
+         "day":"23",
+         "month":"02",
+         "year":"2022",
+         "weekday":"4"
+      }
+   ],
+   "option":{
+      "ptOption":{
+         "active":"-1",
+         "maxChanges":"9",
+         "maxTime":"360",
+         "maxWait":"120",
+         "routeType":"LEASTTIME",
+         "changeSpeed":"normal",
+         "lineRestriction":"400",
+         "useProxFootSearch":"0",
+         "useProxFootSearchOrigin":"0",
+         "useProxFootSearchDestination":"0",
+         "bike":"0",
+         "plane":"0",
+         "noCrowded":"0",
+         "noSolidStairs":"0",
+         "noEscalators":"0",
+         "noElevators":"0",
+         "lowPlatformVhcl":"0",
+         "wheelchair":"0",
+         "needElevatedPlt":"0",
+         "assistance":"0",
+         "SOSAvail":"0",
+         "noLonelyTransfer":"0",
+         "illumTransfer":"0",
+         "overgroundTransfer":"0",
+         "noInsecurePlaces":"0",
+         "privateTransport":"0",
+         "excludedMeans":[
+            {
+               "means":"Zug",
+               "value":"0",
+               "selected":"0"
+            },
+            {
+               "means":"S-Bahn",
+               "value":"1",
+               "selected":"0"
+            },
+            {
+               "means":"U-Bahn",
+               "value":"2",
+               "selected":"0"
+            },
+            {
+               "means":"Stadtbahn",
+               "value":"3",
+               "selected":"0"
+            },
+            {
+               "means":"StraÃŸen-/Trambahn",
+               "value":"4",
+               "selected":"0"
+            },
+            {
+               "means":"Stadtbus",
+               "value":"5",
+               "selected":"0"
+            },
+            {
+               "means":"Regionalbus",
+               "value":"6",
+               "selected":"0"
+            },
+            {
+               "means":"Schnellbus",
+               "value":"7",
+               "selected":"0"
+            },
+            {
+               "means":"Seil-/Zahnradbahn",
+               "value":"8",
+               "selected":"0"
+            },
+            {
+               "means":"Schiff",
+               "value":"9",
+               "selected":"0"
+            },
+            {
+               "means":"AST/Rufbus",
+               "value":"10",
+               "selected":"0"
+            },
+            {
+               "means":"Sonstige",
+               "value":"11",
+               "selected":"0"
+            },
+            {
+               "means":"Flugzeug",
+               "value":"12",
+               "selected":"0"
+            },
+            {
+               "means":"Zug (Nahverkehr)",
+               "value":"13",
+               "selected":"0"
+            },
+            {
+               "means":"Zug (Fernverkehr)",
+               "value":"14",
+               "selected":"0"
+            },
+            {
+               "means":"Zug Fernv m Zuschlag",
+               "value":"15",
+               "selected":"0"
+            },
+            {
+               "means":"Zug Fernv m spez Fpr",
+               "value":"16",
+               "selected":"0"
+            },
+            {
+               "means":"SEV Schienenersatzv",
+               "value":"17",
+               "selected":"0"
+            },
+            {
+               "means":"Zug Shuttle",
+               "value":"18",
+               "selected":"0"
+            },
+            {
+               "means":"BÃ¼rgerbus",
+               "value":"19",
+               "selected":"0"
+            }
+         ],
+         "activeImp":"-1",
+         "activeCom":"-1",
+         "activeSec":"-1"
+      }
+   },
+   "servingLines":{
+      "trainInfo":"show",
+      "selected":"1",
+      "lines":[
+         {
+            "mode":{
+               "name":"Citybus 320.1",
+               "number":"320.1",
+               "product":"Citybus",
+               "productId":"23",
+               "type":"5",
+               "code":"4",
+               "destination":"Milland, Zeffer",
+               "destID":"66002580",
+               "desc":"",
+               "timetablePeriod":"Fahrplan 2022",
+               "diva":{
+                  "branch":"02",
+                  "line":"02320",
+                  "supplement":"1",
+                  "dir":"H",
+                  "project":"22a",
+                  "network":"apb",
+                  "stateless":"apb:02320:1:H:22a",
+                  "tripCode":"0",
+                  "operator":"Pizzinini",
+                  "opPublicCode":"Pizzini",
+                  "opCode":"019",
+                  "vF":"20211212",
+                  "vTo":"20221210",
+                  "lineDisplay":"line",
+                  "attrs":[
+                     
+                  ]
+               }
+            },
+            "index":"4:0"
+         },
+         {
+            "mode":{
+               "name":"Citybus 320.3",
+               "number":"320.3",
+               "product":"Citybus",
+               "productId":"23",
+               "type":"5",
+               "code":"4",
+               "destination":"Brixen, Haller",
+               "destID":"66001525",
+               "desc":"",
+               "timetablePeriod":"Fahrplan 2022",
+               "diva":{
+                  "branch":"02",
+                  "line":"02320",
+                  "supplement":"3",
+                  "dir":"H",
+                  "project":"22a",
+                  "network":"apb",
+                  "stateless":"apb:02320:3:H:22a",
+                  "tripCode":"0",
+                  "operator":"Pizzinini",
+                  "opPublicCode":"Pizzini",
+                  "opCode":"019",
+                  "vF":"20211212",
+                  "vTo":"20221210",
+                  "lineDisplay":"line",
+                  "attrs":[
+                     
+                  ]
+               }
+            },
+            "index":"4:1"
+         },
+         {
+            "mode":{
+               "name":"Citybus 320.4",
+               "number":"320.4",
+               "product":"Citybus",
+               "productId":"23",
+               "type":"5",
+               "code":"4",
+               "destination":"Brixen, Bahnhof Brixen",
+               "destID":"66000998",
+               "desc":"",
+               "timetablePeriod":"Fahrplan 2022",
+               "diva":{
+                  "branch":"02",
+                  "line":"02320",
+                  "supplement":"4",
+                  "dir":"H",
+                  "project":"22a",
+                  "network":"apb",
+                  "stateless":"apb:02320:4:H:22a",
+                  "tripCode":"0",
+                  "operator":"Pizzinini",
+                  "opPublicCode":"Pizzini",
+                  "opCode":"019",
+                  "vF":"20211212",
+                  "vTo":"20221210",
+                  "lineDisplay":"line",
+                  "attrs":[
+                     
+                  ]
+               }
+            },
+            "index":"4:2"
+         },
+         {
+            "mode":{
+               "name":"Bus 170",
+               "number":"170",
+               "product":"Bus",
+               "productId":"20",
+               "type":"6",
+               "code":"3",
+               "destination":"Brixen, Vinzentinum",
+               "destID":"66001145",
+               "desc":"",
+               "timetablePeriod":"Fahrplan 2022",
+               "diva":{
+                  "branch":"02",
+                  "line":"02170",
+                  "supplement":" ",
+                  "dir":"H",
+                  "project":"22a",
+                  "network":"apb",
+                  "stateless":"apb:02170: :H:22a",
+                  "tripCode":"0",
+                  "operator":"Simobil",
+                  "opPublicCode":"Simobil",
+                  "opCode":"022",
+                  "vF":"20211212",
+                  "vTo":"20221210",
+                  "lineDisplay":"line",
+                  "attrs":[
+                     
+                  ]
+               }
+            },
+            "index":"6:0"
+         },
+         {
+            "mode":{
+               "name":"Bus 170",
+               "number":"170",
+               "product":"Bus",
+               "productId":"20",
+               "type":"6",
+               "code":"3",
+               "destination":"VÃ¶ls, Kreisverkehr",
+               "destID":"66000859",
+               "desc":"",
+               "timetablePeriod":"Fahrplan 2022",
+               "diva":{
+                  "branch":"02",
+                  "line":"02170",
+                  "supplement":" ",
+                  "dir":"R",
+                  "project":"22a",
+                  "network":"apb",
+                  "stateless":"apb:02170: :R:22a",
+                  "tripCode":"0",
+                  "operator":"Simobil",
+                  "opPublicCode":"Simobil",
+                  "opCode":"022",
+                  "vF":"20211212",
+                  "vTo":"20221210",
+                  "lineDisplay":"line",
+                  "attrs":[
+                     
+                  ]
+               }
+            },
+            "index":"6:1"
+         },
+         {
+            "mode":{
+               "name":"Bus 310",
+               "number":"310",
+               "product":"Bus",
+               "productId":"20",
+               "type":"6",
+               "code":"3",
+               "destination":"Sterzing, Nordpark",
+               "destID":"66001392",
+               "desc":"",
+               "timetablePeriod":"Fahrplan 2022",
+               "diva":{
+                  "branch":"85",
+                  "line":"85310",
+                  "supplement":" ",
+                  "dir":"H",
+                  "project":"22a",
+                  "network":"apb",
+                  "stateless":"apb:85310: :H:22a",
+                  "tripCode":"0",
+                  "operator":"Auto Rainer",
+                  "opPublicCode":"Rainer",
+                  "opCode":"033",
+                  "vF":"20211212",
+                  "vTo":"20221210",
+                  "lineDisplay":"line",
+                  "attrs":[
+                     
+                  ]
+               }
+            },
+            "index":"6:2"
+         },
+         {
+            "mode":{
+               "name":"Bus 321",
+               "number":"321",
+               "product":"Bus",
+               "productId":"20",
+               "type":"6",
+               "code":"3",
+               "destination":"Brixen, Busbahnhof",
+               "destID":"66000999",
+               "desc":"",
+               "timetablePeriod":"Fahrplan 2022",
+               "diva":{
+                  "branch":"02",
+                  "line":"02321",
+                  "supplement":" ",
+                  "dir":"H",
+                  "project":"22a",
+                  "network":"apb",
+                  "stateless":"apb:02321: :H:22a",
+                  "tripCode":"0",
+                  "operator":"Pizzinini",
+                  "opPublicCode":"Pizzini",
+                  "opCode":"019",
+                  "vF":"20211212",
+                  "vTo":"20221210",
+                  "lineDisplay":"line",
+                  "attrs":[
+                     
+                  ]
+               }
+            },
+            "index":"6:3"
+         },
+         {
+            "mode":{
+               "name":"Bus 321",
+               "number":"321",
+               "product":"Bus",
+               "productId":"20",
+               "type":"6",
+               "code":"3",
+               "destination":"Plose Gondellift",
+               "destID":"66001006",
+               "desc":"",
+               "timetablePeriod":"Fahrplan 2022",
+               "diva":{
+                  "branch":"02",
+                  "line":"02321",
+                  "supplement":" ",
+                  "dir":"R",
+                  "project":"22a",
+                  "network":"apb",
+                  "stateless":"apb:02321: :R:22a",
+                  "tripCode":"0",
+                  "operator":"Pizzinini",
+                  "opPublicCode":"Pizzini",
+                  "opCode":"019",
+                  "vF":"20211212",
+                  "vTo":"20221210",
+                  "lineDisplay":"line",
+                  "attrs":[
+                     
+                  ]
+               }
+            },
+            "index":"6:4"
+         },
+         {
+            "mode":{
+               "name":"Bus 322",
+               "number":"322",
+               "product":"Bus",
+               "productId":"20",
+               "type":"6",
+               "code":"3",
+               "destination":"Brixen, Busbahnhof",
+               "destID":"66000999",
+               "desc":"",
+               "timetablePeriod":"Fahrplan 2022",
+               "diva":{
+                  "branch":"02",
+                  "line":"02322",
+                  "supplement":" ",
+                  "dir":"H",
+                  "project":"22a",
+                  "network":"apb",
+                  "stateless":"apb:02322: :H:22a",
+                  "tripCode":"0",
+                  "operator":"Pizzinini Mobility",
+                  "opPublicCode":"Pizzini",
+                  "opCode":"031",
+                  "vF":"20211212",
+                  "vTo":"20221210",
+                  "lineDisplay":"line",
+                  "attrs":[
+                     
+                  ]
+               }
+            },
+            "index":"6:5"
+         },
+         {
+            "mode":{
+               "name":"Bus 322",
+               "number":"322",
+               "product":"Bus",
+               "productId":"20",
+               "type":"6",
+               "code":"3",
+               "destination":"St. Leonhard",
+               "destID":"66001598",
+               "desc":"",
+               "timetablePeriod":"Fahrplan 2022",
+               "diva":{
+                  "branch":"02",
+                  "line":"02322",
+                  "supplement":" ",
+                  "dir":"R",
+                  "project":"22a",
+                  "network":"apb",
+                  "stateless":"apb:02322: :R:22a",
+                  "tripCode":"0",
+                  "operator":"Pizzinini Mobility",
+                  "opPublicCode":"Pizzini",
+                  "opCode":"031",
+                  "vF":"20211212",
+                  "vTo":"20221210",
+                  "lineDisplay":"line",
+                  "attrs":[
+                     
+                  ]
+               }
+            },
+            "index":"6:6"
+         },
+         {
+            "mode":{
+               "name":"Bus 325",
+               "number":"325",
+               "product":"Bus",
+               "productId":"20",
+               "type":"6",
+               "code":"3",
+               "destination":"Brixen, Busbahnhof",
+               "destID":"66000999",
+               "desc":"",
+               "timetablePeriod":"Fahrplan 2022",
+               "diva":{
+                  "branch":"02",
+                  "line":"02325",
+                  "supplement":" ",
+                  "dir":"H",
+                  "project":"22a",
+                  "network":"apb",
+                  "stateless":"apb:02325: :H:22a",
+                  "tripCode":"0",
+                  "operator":"Mellauner",
+                  "opPublicCode":"Mellaun",
+                  "opCode":"016",
+                  "vF":"20211212",
+                  "vTo":"20221210",
+                  "lineDisplay":"line",
+                  "attrs":[
+                     
+                  ]
+               }
+            },
+            "index":"6:7"
+         },
+         {
+            "mode":{
+               "name":"Bus 325",
+               "number":"325",
+               "product":"Bus",
+               "productId":"20",
+               "type":"6",
+               "code":"3",
+               "destination":"LÃ¼sen, Dorf",
+               "destID":"66001582",
+               "desc":"",
+               "timetablePeriod":"Fahrplan 2022",
+               "diva":{
+                  "branch":"02",
+                  "line":"02325",
+                  "supplement":" ",
+                  "dir":"R",
+                  "project":"22a",
+                  "network":"apb",
+                  "stateless":"apb:02325: :R:22a",
+                  "tripCode":"0",
+                  "operator":"Mellauner",
+                  "opPublicCode":"Mellaun",
+                  "opCode":"016",
+                  "vF":"20211212",
+                  "vTo":"20221210",
+                  "lineDisplay":"line",
+                  "attrs":[
+                     
+                  ]
+               }
+            },
+            "index":"6:8"
+         },
+         {
+            "mode":{
+               "name":"Bus 328",
+               "number":"328",
+               "product":"Bus",
+               "productId":"20",
+               "type":"6",
+               "code":"3",
+               "destination":"Schabs, Zentrum",
+               "destID":"66001171",
+               "desc":"",
+               "timetablePeriod":"Fahrplan 2022",
+               "diva":{
+                  "branch":"02",
+                  "line":"02328",
+                  "supplement":" ",
+                  "dir":"H",
+                  "project":"22a",
+                  "network":"apb",
+                  "stateless":"apb:02328: :H:22a",
+                  "tripCode":"0",
+                  "operator":"KlÃ¶cker",
+                  "opPublicCode":"Klöcker",
+                  "opCode":"012",
+                  "vF":"20211212",
+                  "vTo":"20221210",
+                  "lineDisplay":"line",
+                  "attrs":[
+                     
+                  ]
+               }
+            },
+            "index":"6:9"
+         },
+         {
+            "mode":{
+               "name":"Bus 329",
+               "number":"329",
+               "product":"Bus",
+               "productId":"20",
+               "type":"6",
+               "code":"3",
+               "destination":"Schalders, Kirche",
+               "destID":"66001560",
+               "desc":"",
+               "timetablePeriod":"Fahrplan 2022",
+               "diva":{
+                  "branch":"02",
+                  "line":"02329",
+                  "supplement":" ",
+                  "dir":"R",
+                  "project":"22a",
+                  "network":"apb",
+                  "stateless":"apb:02329: :R:22a",
+                  "tripCode":"0",
+                  "operator":"Leitner",
+                  "opPublicCode":"Leitner",
+                  "opCode":"014",
+                  "vF":"20211212",
+                  "vTo":"20221210",
+                  "lineDisplay":"line",
+                  "attrs":[
+                     
+                  ]
+               }
+            },
+            "index":"6:10"
+         },
+         {
+            "mode":{
+               "name":"Bus 330",
+               "number":"330",
+               "product":"Bus",
+               "productId":"20",
+               "type":"6",
+               "code":"3",
+               "destination":"Brixen, Busbahnhof",
+               "destID":"66000999",
+               "desc":"",
+               "timetablePeriod":"Fahrplan 2022",
+               "diva":{
+                  "branch":"00",
+                  "line":"00330",
+                  "supplement":" ",
+                  "dir":"H",
+                  "project":"22a",
+                  "network":"apb",
+                  "stateless":"apb:00330: :H:22a",
+                  "tripCode":"0",
+                  "operator":"SAD Bus",
+                  "opPublicCode":"SAD",
+                  "opCode":"025",
+                  "vF":"20211212",
+                  "vTo":"20221210",
+                  "lineDisplay":"line",
+                  "attrs":[
+                     
+                  ]
+               }
+            },
+            "index":"6:11"
+         },
+         {
+            "mode":{
+               "name":"Bus 331",
+               "number":"331",
+               "product":"Bus",
+               "productId":"20",
+               "type":"6",
+               "code":"3",
+               "destination":"Brixen, Krankenhaus",
+               "destID":"66001144",
+               "desc":"",
+               "timetablePeriod":"Fahrplan 2022",
+               "diva":{
+                  "branch":"00",
+                  "line":"00331",
+                  "supplement":" ",
+                  "dir":"H",
+                  "project":"22a",
+                  "network":"apb",
+                  "stateless":"apb:00331: :H:22a",
+                  "tripCode":"0",
+                  "operator":"SAD Bus",
+                  "opPublicCode":"SAD",
+                  "opCode":"025",
+                  "vF":"20211212",
+                  "vTo":"20221210",
+                  "lineDisplay":"line",
+                  "attrs":[
+                     
+                  ]
+               }
+            },
+            "index":"6:12"
+         },
+         {
+            "mode":{
+               "name":"Bus 332",
+               "number":"332",
+               "product":"Bus",
+               "productId":"20",
+               "type":"6",
+               "code":"3",
+               "destination":"Brixen, Busbahnhof",
+               "destID":"66000999",
+               "desc":"",
+               "timetablePeriod":"Fahrplan 2022",
+               "diva":{
+                  "branch":"00",
+                  "line":"00332",
+                  "supplement":" ",
+                  "dir":"H",
+                  "project":"22a",
+                  "network":"apb",
+                  "stateless":"apb:00332: :H:22a",
+                  "tripCode":"0",
+                  "operator":"SAD Bus",
+                  "opPublicCode":"SAD",
+                  "opCode":"025",
+                  "vF":"20211212",
+                  "vTo":"20221210",
+                  "lineDisplay":"line",
+                  "attrs":[
+                     
+                  ]
+               }
+            },
+            "index":"6:13"
+         },
+         {
+            "mode":{
+               "name":"Bus 332",
+               "number":"332",
+               "product":"Bus",
+               "productId":"20",
+               "type":"6",
+               "code":"3",
+               "destination":"ZanserhÃ¼tte",
+               "destID":"66001039",
+               "desc":"",
+               "timetablePeriod":"Fahrplan 2022",
+               "diva":{
+                  "branch":"00",
+                  "line":"00332",
+                  "supplement":" ",
+                  "dir":"R",
+                  "project":"22a",
+                  "network":"apb",
+                  "stateless":"apb:00332: :R:22a",
+                  "tripCode":"0",
+                  "operator":"SAD Bus",
+                  "opPublicCode":"SAD",
+                  "opCode":"025",
+                  "vF":"20211212",
+                  "vTo":"20221210",
+                  "lineDisplay":"line",
+                  "attrs":[
+                     
+                  ]
+               }
+            },
+            "index":"6:14"
+         },
+         {
+            "mode":{
+               "name":"Bus 342",
+               "number":"342",
+               "product":"Bus",
+               "productId":"20",
+               "type":"6",
+               "code":"3",
+               "destination":"Brixen, Busbahnhof",
+               "destID":"66000999",
+               "desc":"",
+               "timetablePeriod":"Fahrplan 2022",
+               "diva":{
+                  "branch":"02",
+                  "line":"02342",
+                  "supplement":" ",
+                  "dir":"H",
+                  "project":"22a",
+                  "network":"apb",
+                  "stateless":"apb:02342: :H:22a",
+                  "tripCode":"0",
+                  "operator":"Pizzinini",
+                  "opPublicCode":"Pizzini",
+                  "opCode":"019",
+                  "vF":"20211212",
+                  "vTo":"20221210",
+                  "lineDisplay":"line",
+                  "attrs":[
+                     
+                  ]
+               }
+            },
+            "index":"6:15"
+         },
+         {
+            "mode":{
+               "name":"Bus 344",
+               "number":"344",
+               "product":"Bus",
+               "productId":"20",
+               "type":"6",
+               "code":"3",
+               "destination":"Brixen, Busbahnhof",
+               "destID":"66000999",
+               "desc":"",
+               "timetablePeriod":"Fahrplan 2022",
+               "diva":{
+                  "branch":"02",
+                  "line":"02344",
+                  "supplement":" ",
+                  "dir":"H",
+                  "project":"22a",
+                  "network":"apb",
+                  "stateless":"apb:02344: :H:22a",
+                  "tripCode":"0",
+                  "operator":"Pizzinini",
+                  "opPublicCode":"Pizzini",
+                  "opCode":"019",
+                  "vF":"20211212",
+                  "vTo":"20221210",
+                  "lineDisplay":"line",
+                  "attrs":[
+                     
+                  ]
+               }
+            },
+            "index":"6:16"
+         },
+         {
+            "mode":{
+               "name":"Bus 345",
+               "number":"345",
+               "product":"Bus",
+               "productId":"20",
+               "type":"6",
+               "code":"3",
+               "destination":"Brixen, Krankenhaus",
+               "destID":"66001144",
+               "desc":"",
+               "timetablePeriod":"Fahrplan 2022",
+               "diva":{
+                  "branch":"00",
+                  "line":"00345",
+                  "supplement":" ",
+                  "dir":"H",
+                  "project":"22a",
+                  "network":"apb",
+                  "stateless":"apb:00345: :H:22a",
+                  "tripCode":"0",
+                  "operator":"SAD Bus",
+                  "opPublicCode":"SAD",
+                  "opCode":"025",
+                  "vF":"20211212",
+                  "vTo":"20221210",
+                  "lineDisplay":"line",
+                  "attrs":[
+                     
+                  ]
+               }
+            },
+            "index":"6:17"
+         },
+         {
+            "mode":{
+               "name":"Bus 346",
+               "number":"346",
+               "product":"Bus",
+               "productId":"20",
+               "type":"6",
+               "code":"3",
+               "destination":"Brixen, Krankenhaus",
+               "destID":"66001144",
+               "desc":"",
+               "timetablePeriod":"Fahrplan 2022",
+               "diva":{
+                  "branch":"00",
+                  "line":"00346",
+                  "supplement":" ",
+                  "dir":"H",
+                  "project":"22a",
+                  "network":"apb",
+                  "stateless":"apb:00346: :H:22a",
+                  "tripCode":"0",
+                  "operator":"SAD Bus",
+                  "opPublicCode":"SAD",
+                  "opCode":"025",
+                  "vF":"20211212",
+                  "vTo":"20221210",
+                  "lineDisplay":"line",
+                  "attrs":[
+                     
+                  ]
+               }
+            },
+            "index":"6:18"
+         },
+         {
+            "mode":{
+               "name":"Bus 350",
+               "number":"350",
+               "product":"Bus",
+               "productId":"20",
+               "type":"6",
+               "code":"3",
+               "destination":"Brixen, Busbahnhof",
+               "destID":"66000999",
+               "desc":"",
+               "timetablePeriod":"Fahrplan 2022",
+               "diva":{
+                  "branch":"00",
+                  "line":"00350",
+                  "supplement":" ",
+                  "dir":"H",
+                  "project":"22a",
+                  "network":"apb",
+                  "stateless":"apb:00350: :H:22a",
+                  "tripCode":"0",
+                  "operator":"SAD Bus",
+                  "opPublicCode":"SAD",
+                  "opCode":"025",
+                  "vF":"20211212",
+                  "vTo":"20221210",
+                  "lineDisplay":"line",
+                  "attrs":[
+                     
+                  ]
+               }
+            },
+            "index":"6:19"
+         },
+         {
+            "mode":{
+               "name":"Bus 350",
+               "number":"350",
+               "product":"Bus",
+               "productId":"20",
+               "type":"6",
+               "code":"3",
+               "destination":"Plan",
+               "destID":"66001140",
+               "desc":"",
+               "timetablePeriod":"Fahrplan 2022",
+               "diva":{
+                  "branch":"00",
+                  "line":"00350",
+                  "supplement":" ",
+                  "dir":"R",
+                  "project":"22a",
+                  "network":"apb",
+                  "stateless":"apb:00350: :R:22a",
+                  "tripCode":"0",
+                  "operator":"SAD Bus",
+                  "opPublicCode":"SAD",
+                  "opCode":"025",
+                  "vF":"20211212",
+                  "vTo":"20221210",
+                  "lineDisplay":"line",
+                  "attrs":[
+                     
+                  ]
+               }
+            },
+            "index":"6:20"
+         },
+         {
+            "mode":{
+               "name":"Bus 351",
+               "number":"351",
+               "product":"Bus",
+               "productId":"20",
+               "type":"6",
+               "code":"3",
+               "destination":"Brixen, Busbahnhof",
+               "destID":"66000999",
+               "desc":"",
+               "timetablePeriod":"Fahrplan 2022",
+               "diva":{
+                  "branch":"00",
+                  "line":"00351",
+                  "supplement":" ",
+                  "dir":"H",
+                  "project":"22a",
+                  "network":"apb",
+                  "stateless":"apb:00351: :H:22a",
+                  "tripCode":"0",
+                  "operator":"SAD Bus",
+                  "opPublicCode":"SAD",
+                  "opCode":"025",
+                  "vF":"20211212",
+                  "vTo":"20221210",
+                  "lineDisplay":"line",
+                  "attrs":[
+                     
+                  ]
+               }
+            },
+            "index":"6:21"
+         },
+         {
+            "mode":{
+               "name":"Bus 351",
+               "number":"351",
+               "product":"Bus",
+               "productId":"20",
+               "type":"6",
+               "code":"3",
+               "destination":"St. Ulrich, Antoniusplatz",
+               "destID":"66000894",
+               "desc":"",
+               "timetablePeriod":"Fahrplan 2022",
+               "diva":{
+                  "branch":"00",
+                  "line":"00351",
+                  "supplement":" ",
+                  "dir":"R",
+                  "project":"22a",
+                  "network":"apb",
+                  "stateless":"apb:00351: :R:22a",
+                  "tripCode":"0",
+                  "operator":"SAD Bus",
+                  "opPublicCode":"SAD",
+                  "opCode":"025",
+                  "vF":"20211212",
+                  "vTo":"20221210",
+                  "lineDisplay":"line",
+                  "attrs":[
+                     
+                  ]
+               }
+            },
+            "index":"6:22"
+         },
+         {
+            "mode":{
+               "name":"Bus 401",
+               "number":"401",
+               "product":"Bus",
+               "productId":"20",
+               "type":"6",
+               "code":"3",
+               "destination":"Brixen, Progress",
+               "destID":"66001548",
+               "desc":"",
+               "timetablePeriod":"Fahrplan 2022",
+               "diva":{
+                  "branch":"00",
+                  "line":"00401",
+                  "supplement":" ",
+                  "dir":"H",
+                  "project":"22a",
+                  "network":"apb",
+                  "stateless":"apb:00401: :H:22a",
+                  "tripCode":"0",
+                  "operator":"SAD Bus",
+                  "opPublicCode":"SAD",
+                  "opCode":"025",
+                  "vF":"20211212",
+                  "vTo":"20221210",
+                  "lineDisplay":"line",
+                  "attrs":[
+                     
+                  ]
+               }
+            },
+            "index":"6:23"
+         },
+         {
+            "mode":{
+               "name":"Bus 401",
+               "number":"401",
+               "product":"Bus",
+               "productId":"20",
+               "type":"6",
+               "code":"3",
+               "destination":"Bruneck, Busbahnhof",
+               "destID":"66001195",
+               "desc":"",
+               "timetablePeriod":"Fahrplan 2022",
+               "diva":{
+                  "branch":"00",
+                  "line":"00401",
+                  "supplement":" ",
+                  "dir":"R",
+                  "project":"22a",
+                  "network":"apb",
+                  "stateless":"apb:00401: :R:22a",
+                  "tripCode":"0",
+                  "operator":"SAD Bus",
+                  "opPublicCode":"SAD",
+                  "opCode":"025",
+                  "vF":"20211212",
+                  "vTo":"20221210",
+                  "lineDisplay":"line",
+                  "attrs":[
+                     
+                  ]
+               }
+            },
+            "index":"6:24"
+         },
+         {
+            "mode":{
+               "name":"Bus 401",
+               "number":"401",
+               "product":"Bus",
+               "productId":"20",
+               "type":"6",
+               "code":"3",
+               "destination":"Bruneck, Busbahnhof",
+               "destID":"66001195",
+               "desc":"",
+               "timetablePeriod":"Fahrplan 2022",
+               "diva":{
+                  "branch":"02",
+                  "line":"02401",
+                  "supplement":"G",
+                  "dir":"R",
+                  "project":"22a",
+                  "network":"apb",
+                  "stateless":"apb:02401:G:R:22a",
+                  "tripCode":"0",
+                  "operator":"SAD Bus",
+                  "opPublicCode":"SAD",
+                  "opCode":"025",
+                  "vF":"20211212",
+                  "vTo":"20221210",
+                  "lineDisplay":"line",
+                  "attrs":[
+                     
+                  ]
+               }
+            },
+            "index":"6:25"
+         }
+      ]
+   },
+   "departureList":[
+      {
+         "stopID":"66000998",
+         "x":"702582",
+         "y":"323632",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"3039",
+         "platformName":"C",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"1",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"14",
+            "minute":"38"
+         },
+         "realtimeTripStatus":"MONITORED",
+         "servingLine":{
+            "key":"9",
+            "code":"4",
+            "number":"320.4",
+            "symbol":"320.4",
+            "motType":"5",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Brixen, Bahnhof Brixen",
+            "directionFrom":"Brixen, Burgfrieden",
+            "name":"Citybus",
+            "liErgRiProj":{
+               "line":"02320",
+               "project":"22a",
+               "direction":"H",
+               "supplement":"4",
+               "network":"apb"
+            },
+            "destID":"66000998",
+            "stateless":"apb:02320:4:H:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"019",
+            "name":"Pizzinini",
+            "publicCode":"Pizzini"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702569",
+         "y":"323581",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7004",
+         "platformName":"B",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"1",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"14",
+            "minute":"38"
+         },
+         "servingLine":{
+            "key":"33",
+            "code":"3",
+            "number":"170",
+            "symbol":"170",
+            "motType":"6",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Brixen, Vinzentinum",
+            "directionFrom":"Bozen, Busbahnhof",
+            "name":"Bus",
+            "liErgRiProj":{
+               "line":"02170",
+               "project":"22a",
+               "direction":"H",
+               "supplement":" ",
+               "network":"apb"
+            },
+            "destID":"66001145",
+            "stateless":"apb:02170: :H:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"022",
+            "name":"Simobil",
+            "publicCode":"Simobil"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702569",
+         "y":"323581",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7004",
+         "platformName":"B",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"6",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"14",
+            "minute":"43"
+         },
+         "servingLine":{
+            "key":"19",
+            "code":"4",
+            "number":"320.1",
+            "symbol":"320.1",
+            "motType":"5",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Vahrn, Post",
+            "directionFrom":"Albeins, Grundschule",
+            "name":"Citybus",
+            "liErgRiProj":{
+               "line":"02320",
+               "project":"22a",
+               "direction":"H",
+               "supplement":"1",
+               "network":"apb"
+            },
+            "destID":"66001543",
+            "stateless":"apb:02320:1:H:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"019",
+            "name":"Pizzinini",
+            "publicCode":"Pizzini"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702569",
+         "y":"323581",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7004",
+         "platformName":"B",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"7",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"14",
+            "minute":"44"
+         },
+         "servingLine":{
+            "key":"7",
+            "code":"3",
+            "number":"325",
+            "symbol":"325",
+            "motType":"6",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Brixen, Busbahnhof",
+            "directionFrom":"Petschied, Schmied BrÃ¼cke",
+            "name":"Bus",
+            "liErgRiProj":{
+               "line":"02325",
+               "project":"22a",
+               "direction":"H",
+               "supplement":" ",
+               "network":"apb"
+            },
+            "destID":"66000999",
+            "stateless":"apb:02325: :H:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"016",
+            "name":"Mellauner",
+            "publicCode":"Mellaun"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702569",
+         "y":"323581",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7004",
+         "platformName":"B",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"7",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"14",
+            "minute":"44"
+         },
+         "servingLine":{
+            "key":"12",
+            "code":"3",
+            "number":"328",
+            "symbol":"328",
+            "motType":"6",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Natz - Schabs",
+            "directionFrom":"Brixen, Bahnhof Brixen",
+            "name":"Bus",
+            "liErgRiProj":{
+               "line":"02328",
+               "project":"22a",
+               "direction":"H",
+               "supplement":" ",
+               "network":"apb"
+            },
+            "destID":"66000998",
+            "stateless":"apb:02328: :H:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"012",
+            "name":"KlÃ¶cker",
+            "publicCode":"Klöcker"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702558",
+         "y":"323579",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7003",
+         "platformName":"A",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"8",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"14",
+            "minute":"45"
+         },
+         "servingLine":{
+            "key":"18",
+            "code":"4",
+            "number":"320.1",
+            "symbol":"320.1",
+            "motType":"5",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Albeins, Grundschule",
+            "directionFrom":"Albeins, Grundschule",
+            "name":"Citybus",
+            "liErgRiProj":{
+               "line":"02320",
+               "project":"22a",
+               "direction":"H",
+               "supplement":"1",
+               "network":"apb"
+            },
+            "destID":"66001543",
+            "stateless":"apb:02320:1:H:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"019",
+            "name":"Pizzinini",
+            "publicCode":"Pizzini"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702558",
+         "y":"323579",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7003",
+         "platformName":"A",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"10",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"14",
+            "minute":"47"
+         },
+         "servingLine":{
+            "key":"69",
+            "code":"3",
+            "number":"401",
+            "symbol":"401",
+            "motType":"6",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Bruneck, Busbahnhof",
+            "directionFrom":"Brixen, Bahnhof Brixen",
+            "name":"Bus",
+            "liErgRiProj":{
+               "line":"00401",
+               "project":"22a",
+               "direction":"R",
+               "supplement":" ",
+               "network":"apb"
+            },
+            "destID":"66001195",
+            "stateless":"apb:00401: :R:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"025",
+            "name":"SAD Bus",
+            "publicCode":"SAD"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702582",
+         "y":"323632",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"3039",
+         "platformName":"C",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"12",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"14",
+            "minute":"49"
+         },
+         "servingLine":{
+            "key":"9",
+            "code":"4",
+            "number":"320.3",
+            "symbol":"320.3",
+            "motType":"5",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Mahr",
+            "directionFrom":"Brixen, Haller",
+            "name":"Citybus",
+            "liErgRiProj":{
+               "line":"02320",
+               "project":"22a",
+               "direction":"H",
+               "supplement":"3",
+               "network":"apb"
+            },
+            "destID":"66001525",
+            "stateless":"apb:02320:3:H:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"019",
+            "name":"Pizzinini",
+            "publicCode":"Pizzini"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702569",
+         "y":"323581",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7004",
+         "platformName":"B",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"13",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"14",
+            "minute":"50"
+         },
+         "servingLine":{
+            "key":"38",
+            "code":"3",
+            "number":"321",
+            "symbol":"321",
+            "motType":"6",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Brixen, Busbahnhof",
+            "directionFrom":"Palmschoss",
+            "name":"Bus",
+            "liErgRiProj":{
+               "line":"02321",
+               "project":"22a",
+               "direction":"H",
+               "supplement":" ",
+               "network":"apb"
+            },
+            "destID":"66000999",
+            "stateless":"apb:02321: :H:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"019",
+            "name":"Pizzinini",
+            "publicCode":"Pizzini"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702552",
+         "y":"323652",
+         "mapName":"APBV",
+         "area":"50",
+         "platform":"2",
+         "platformName":"",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"19",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"14",
+            "minute":"56"
+         },
+         "realtimeTripStatus":"MONITORED",
+         "servingLine":{
+            "key":"4",
+            "code":"6",
+            "number":"EC 85 EuroCity",
+            "symbol":"EC",
+            "motType":"0",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Venezia, Stazione di Venezia Santa Lucia",
+            "directionFrom":"MÃ¼nchen, Hauptbahnhof MÃ¼nchen",
+            "trainType":"EC",
+            "trainName":"EuroCity",
+            "trainNum":"85",
+            "name":"Eurocity",
+            "hints":[
+               {
+                  "content":"Fahrradmitnahme reservierungspflichtig"
+               }
+            ],
+            "liErgRiProj":{
+               "line":"05100",
+               "project":"22a",
+               "direction":"H",
+               "supplement":"E",
+               "network":"apb"
+            },
+            "destID":"66007012",
+            "stateless":"apb:05100:E:H:22a",
+            "lineDisplay":"train"
+         },
+         "operator":{
+            "code":"056",
+            "name":"TN/Ã–BB",
+            "publicCode":"TN/ÖBB"
+         },
+         "attrs":[
+            {
+               "name":"AVMLowFloorVeh",
+               "value":"1"
+            },
+            {
+               "name":"AVMWheelChairAccess",
+               "value":"1"
+            },
+            {
+               "name":"PlanLowFloorVehicle",
+               "value":"1"
+            },
+            {
+               "name":"lineType",
+               "value":"HIGHSPEEDTRAIN"
+            },
+            {
+               "name":"lineType",
+               "value":"LONG_DISTANCE_TRAINS"
+            },
+            {
+               "name":"lineType",
+               "value":"SUPPLEMENT"
+            }
+         ]
+      },
+      {
+         "stopID":"66000998",
+         "x":"702558",
+         "y":"323579",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7003",
+         "platformName":"A",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"19",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"14",
+            "minute":"56"
+         },
+         "servingLine":{
+            "key":"182",
+            "code":"3",
+            "number":"350",
+            "symbol":"350",
+            "motType":"6",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Plan",
+            "directionFrom":"Brixen, Busbahnhof",
+            "name":"Bus",
+            "liErgRiProj":{
+               "line":"00350",
+               "project":"22a",
+               "direction":"R",
+               "supplement":" ",
+               "network":"apb"
+            },
+            "destID":"66001140",
+            "stateless":"apb:00350: :R:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"025",
+            "name":"SAD Bus",
+            "publicCode":"SAD"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702569",
+         "y":"323581",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7004",
+         "platformName":"B",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"21",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"14",
+            "minute":"58"
+         },
+         "servingLine":{
+            "key":"60",
+            "code":"4",
+            "number":"320.1",
+            "symbol":"320.1",
+            "motType":"5",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Vahrn, Post",
+            "directionFrom":"Milland, Zeffer",
+            "name":"Citybus",
+            "liErgRiProj":{
+               "line":"02320",
+               "project":"22a",
+               "direction":"H",
+               "supplement":"1",
+               "network":"apb"
+            },
+            "destID":"66002580",
+            "stateless":"apb:02320:1:H:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"019",
+            "name":"Pizzinini",
+            "publicCode":"Pizzini"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702558",
+         "y":"323579",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7003",
+         "platformName":"A",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"23",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"15",
+            "minute":"0"
+         },
+         "servingLine":{
+            "key":"59",
+            "code":"4",
+            "number":"320.1",
+            "symbol":"320.1",
+            "motType":"5",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Milland, Zeffer",
+            "directionFrom":"Milland, Zeffer",
+            "name":"Citybus",
+            "liErgRiProj":{
+               "line":"02320",
+               "project":"22a",
+               "direction":"H",
+               "supplement":"1",
+               "network":"apb"
+            },
+            "destID":"66002580",
+            "stateless":"apb:02320:1:H:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"019",
+            "name":"Pizzinini",
+            "publicCode":"Pizzini"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702552",
+         "y":"323652",
+         "mapName":"APBV",
+         "area":"50",
+         "platform":"3",
+         "platformName":"",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"27",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"15",
+            "minute":"4"
+         },
+         "realtimeTripStatus":"MONITORED",
+         "servingLine":{
+            "key":"10",
+            "code":"6",
+            "number":"EC 84 EuroCity",
+            "symbol":"EC",
+            "motType":"0",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"MÃ¼nchen, Hauptbahnhof MÃ¼nchen",
+            "directionFrom":"Bologna, Bahnhof Bologna Centrale",
+            "trainType":"EC",
+            "trainName":"EuroCity",
+            "trainNum":"84",
+            "name":"Eurocity",
+            "hints":[
+               {
+                  "content":"Fahrradmitnahme reservierungspflichtig"
+               }
+            ],
+            "liErgRiProj":{
+               "line":"05100",
+               "project":"22a",
+               "direction":"R",
+               "supplement":"E",
+               "network":"apb"
+            },
+            "destID":"66007086",
+            "stateless":"apb:05100:E:R:22a",
+            "lineDisplay":"train"
+         },
+         "operator":{
+            "code":"056",
+            "name":"TN/Ã–BB",
+            "publicCode":"TN/ÖBB"
+         },
+         "attrs":[
+            {
+               "name":"AVMLowFloorVeh",
+               "value":"1"
+            },
+            {
+               "name":"AVMWheelChairAccess",
+               "value":"1"
+            },
+            {
+               "name":"PlanLowFloorVehicle",
+               "value":"1"
+            },
+            {
+               "name":"lineType",
+               "value":"HIGHSPEEDTRAIN"
+            },
+            {
+               "name":"lineType",
+               "value":"LONG_DISTANCE_TRAINS"
+            },
+            {
+               "name":"lineType",
+               "value":"SUPPLEMENT"
+            }
+         ]
+      },
+      {
+         "stopID":"66000998",
+         "x":"702582",
+         "y":"323632",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"3039",
+         "platformName":"C",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"31",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"15",
+            "minute":"8"
+         },
+         "servingLine":{
+            "key":"9",
+            "code":"4",
+            "number":"320.3",
+            "symbol":"320.3",
+            "motType":"5",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Brixen, Haller",
+            "directionFrom":"Brixen, Haller",
+            "name":"Citybus",
+            "liErgRiProj":{
+               "line":"02320",
+               "project":"22a",
+               "direction":"H",
+               "supplement":"3",
+               "network":"apb"
+            },
+            "destID":"66001525",
+            "stateless":"apb:02320:3:H:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"019",
+            "name":"Pizzinini",
+            "publicCode":"Pizzini"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702558",
+         "y":"323579",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7003",
+         "platformName":"A",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"33",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"15",
+            "minute":"10"
+         },
+         "servingLine":{
+            "key":"11",
+            "code":"3",
+            "number":"310",
+            "symbol":"310",
+            "motType":"6",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Sterzing, Nordpark",
+            "directionFrom":"Brixen, Bahnhof Brixen",
+            "name":"Bus",
+            "liErgRiProj":{
+               "line":"85310",
+               "project":"22a",
+               "direction":"H",
+               "supplement":" ",
+               "network":"apb"
+            },
+            "destID":"66001392",
+            "stateless":"apb:85310: :H:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"033",
+            "name":"Auto Rainer",
+            "publicCode":"Rainer"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702569",
+         "y":"323581",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7004",
+         "platformName":"B",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"34",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"15",
+            "minute":"11"
+         },
+         "servingLine":{
+            "key":"9",
+            "code":"3",
+            "number":"344",
+            "symbol":"344",
+            "motType":"6",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Tils",
+            "directionFrom":"Brixen, Busbahnhof",
+            "name":"Bus",
+            "liErgRiProj":{
+               "line":"02344",
+               "project":"22a",
+               "direction":"H",
+               "supplement":" ",
+               "network":"apb"
+            },
+            "destID":"66000999",
+            "stateless":"apb:02344: :H:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"019",
+            "name":"Pizzinini",
+            "publicCode":"Pizzini"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702569",
+         "y":"323581",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7004",
+         "platformName":"B",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"36",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"15",
+            "minute":"13"
+         },
+         "servingLine":{
+            "key":"20",
+            "code":"4",
+            "number":"320.1",
+            "symbol":"320.1",
+            "motType":"5",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Vahrn, Post",
+            "directionFrom":"Albeins, Grundschule",
+            "name":"Citybus",
+            "liErgRiProj":{
+               "line":"02320",
+               "project":"22a",
+               "direction":"H",
+               "supplement":"1",
+               "network":"apb"
+            },
+            "destID":"66001543",
+            "stateless":"apb:02320:1:H:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"019",
+            "name":"Pizzinini",
+            "publicCode":"Pizzini"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702569",
+         "y":"323581",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7004",
+         "platformName":"B",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"37",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"15",
+            "minute":"14"
+         },
+         "servingLine":{
+            "key":"25",
+            "code":"3",
+            "number":"328",
+            "symbol":"328",
+            "motType":"6",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Natz - Schabs",
+            "directionFrom":"Brixen, Bahnhof Brixen",
+            "name":"Bus",
+            "liErgRiProj":{
+               "line":"02328",
+               "project":"22a",
+               "direction":"H",
+               "supplement":" ",
+               "network":"apb"
+            },
+            "destID":"66000998",
+            "stateless":"apb:02328: :H:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"012",
+            "name":"KlÃ¶cker",
+            "publicCode":"Klöcker"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702558",
+         "y":"323579",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7003",
+         "platformName":"A",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"38",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"15",
+            "minute":"15"
+         },
+         "servingLine":{
+            "key":"74",
+            "code":"3",
+            "number":"170",
+            "symbol":"170",
+            "motType":"6",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Kastelruth, Busbahnhof",
+            "directionFrom":"Brixen, Krankenhaus",
+            "name":"Bus",
+            "liErgRiProj":{
+               "line":"02170",
+               "project":"22a",
+               "direction":"R",
+               "supplement":" ",
+               "network":"apb"
+            },
+            "destID":"66002958",
+            "stateless":"apb:02170: :R:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"022",
+            "name":"Simobil",
+            "publicCode":"Simobil"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702558",
+         "y":"323579",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7003",
+         "platformName":"A",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"38",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"15",
+            "minute":"15"
+         },
+         "servingLine":{
+            "key":"19",
+            "code":"4",
+            "number":"320.1",
+            "symbol":"320.1",
+            "motType":"5",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Albeins, Grundschule",
+            "directionFrom":"Albeins, Grundschule",
+            "name":"Citybus",
+            "liErgRiProj":{
+               "line":"02320",
+               "project":"22a",
+               "direction":"H",
+               "supplement":"1",
+               "network":"apb"
+            },
+            "destID":"66001543",
+            "stateless":"apb:02320:1:H:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"019",
+            "name":"Pizzinini",
+            "publicCode":"Pizzini"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702558",
+         "y":"323579",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7003",
+         "platformName":"A",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"39",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"15",
+            "minute":"16"
+         },
+         "servingLine":{
+            "key":"6",
+            "code":"3",
+            "number":"321",
+            "symbol":"321",
+            "motType":"6",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Palmschoss",
+            "directionFrom":"Brixen, Busbahnhof",
+            "name":"Bus",
+            "liErgRiProj":{
+               "line":"02321",
+               "project":"22a",
+               "direction":"R",
+               "supplement":" ",
+               "network":"apb"
+            },
+            "destID":"66001013",
+            "stateless":"apb:02321: :R:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"019",
+            "name":"Pizzinini",
+            "publicCode":"Pizzini"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702558",
+         "y":"323579",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7003",
+         "platformName":"A",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"40",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"15",
+            "minute":"17"
+         },
+         "servingLine":{
+            "key":"70",
+            "code":"3",
+            "number":"401",
+            "symbol":"401",
+            "motType":"6",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Bruneck, Busbahnhof",
+            "directionFrom":"Brixen, Bahnhof Brixen",
+            "name":"Bus",
+            "liErgRiProj":{
+               "line":"00401",
+               "project":"22a",
+               "direction":"R",
+               "supplement":" ",
+               "network":"apb"
+            },
+            "destID":"66001195",
+            "stateless":"apb:00401: :R:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"025",
+            "name":"SAD Bus",
+            "publicCode":"SAD"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702558",
+         "y":"323579",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7003",
+         "platformName":"A",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"41",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"15",
+            "minute":"18"
+         },
+         "servingLine":{
+            "key":"23",
+            "code":"3",
+            "number":"325",
+            "symbol":"325",
+            "motType":"6",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Petschied, Schmied BrÃ¼cke",
+            "directionFrom":"Brixen, Busbahnhof",
+            "name":"Bus",
+            "liErgRiProj":{
+               "line":"02325",
+               "project":"22a",
+               "direction":"R",
+               "supplement":" ",
+               "network":"apb"
+            },
+            "destID":"66001589",
+            "stateless":"apb:02325: :R:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"016",
+            "name":"Mellauner",
+            "publicCode":"Mellaun"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702552",
+         "y":"323652",
+         "mapName":"APBV",
+         "area":"50",
+         "platform":"2",
+         "platformName":"2",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"48",
+         "occupancy":"FEW_SEATS",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"15",
+            "minute":"25"
+         },
+         "realtimeTripStatus":"MONITORED",
+         "servingLine":{
+            "key":"39",
+            "code":"6",
+            "number":"R 17155 Treno regionale",
+            "symbol":"REG",
+            "motType":"0",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Meran, Bahnhof Meran",
+            "directionFrom":"Brenner, Bahnhof Brenner",
+            "trainType":"R",
+            "trainName":"Treno regionale",
+            "trainNum":"17155",
+            "name":"Treno regionale",
+            "liErgRiProj":{
+               "line":"04102",
+               "project":"22a",
+               "direction":"H",
+               "supplement":"T",
+               "network":"apb"
+            },
+            "destID":"66000210",
+            "stateless":"apb:04102:T:H:22a",
+            "lineDisplay":"train"
+         },
+         "operator":{
+            "code":"099",
+            "name":"Trenitalia",
+            "publicCode":"TI"
+         },
+         "stopInfos":null,
+         "lineInfos":[
+            {
+               "infoLinkText":"Bahnlinie 200 Meran - Bozen (Update 07.02.2022)",
+               "infoLinkURL":"http://10.240.145.20:80/ics/XSLT_CM_SHOWADDINFO_REQUEST?infoID=10181_STA&seqID=1",
+               "infoText":{
+                  "content":"
+Aus betrieblichen Gründen bzw. aufgrund von Covid-bedingtem Ausfall von Dienstpersonal kommt es weiterhin zu folgenden Zugausfällen.
+
+\n
+Der Trenitalia Zug Nr. 17111 von Bozen nach Meran mit Abfahrt um 06:24 Uhr fällt aus. (Montag bis Samstag)
+
+\n
+Der Trenitalia Zug Nr. 17106 von Meran nach Bozen mit Abfahrt um 07:46 Uhr fällt aus. (Montag bis Samstag)
+
+\n
+Der Trenitalia Zug Nr. 22449 von Bozen nach Meran mit Abfahrt um 18:35 Uhr fällt aus. (Montag bis Freitag)
+
+\n
+Der Trenitalia Zug Nr. 16142 von Meran nach Bozen mit Abfahrt um 19:16 Uhr fällt aus.
+
+\n
+Der Trenitalia Zug Nr. 16840 von Meran nach Bozen mit Abfahrt um 19:46 Uhr fällt aus. (Montag bis Freitag)
+
+\n
+Es ist kein Schienenersatzverkehr eingerichtet. 
+
+\n
+ 
+
+\n
+Stand: 07.02.2022, 12:00 Uhr
+
+",
+                  "subtitle":"Bahnlinie 200 Meran - Bozen (Update 07.02.2022)",
+                  "subject":"Weiterhin coronabedingte ZugausfÃ¤lle",
+                  "additionalText":"",
+                  "htmlText":"",
+                  "wmlText":"",
+                  "smsText":"",
+                  "speechText":""
+               },
+               "paramList":[
+                  {
+                     "type":"addInfoParam",
+                     "name":"creationTime",
+                     "value":"07/02/22 12:10",
+                     "edit":"0"
+                  },
+                  {
+                     "type":"addInfoParam",
+                     "name":"lastModificationTime",
+                     "value":"07/02/22 12:11",
+                     "edit":"0"
+                  }
+               ]
+            },
+            {
+               "infoLinkText":"Bahnlinie 100 Brenner - Bozen (Update: 07.02.2022)",
+               "infoLinkURL":"http://10.240.145.20:80/ics/XSLT_CM_SHOWADDINFO_REQUEST?infoID=10183_STA&seqID=1",
+               "infoText":{
+                  "content":"
+Aus betrieblichen Gründen bzw. aufgrund von Covid-bedingtem Ausfall von Dienstpersonal kommt es weiterhin zu folgenden Zugausfällen. 
+
+\n
+Der Trenitalia Zug RV Nr. 3846 von Bozen nach Brenner mit Abfahrt um 19:32 Uhr fällt aus. (Montag bis Sonntag) 
+
+\n
+Der Trenitalia Zug Nr. 16041 von Brenner nach Bozen mit Abfahrt um 21:08 Uhr fällt aus. (Montag bis Sonntag) 
+
+\n
+ 
+
+\n
+Stand: 07.02.2022, 12 Uhr 
+
+\n
+
+
+
+",
+                  "subtitle":"Bahnlinie 100 Brenner - Bozen (Update: 07.02.2022)",
+                  "subject":"Weiterhin coronabedingte ZugausfÃ¤lle",
+                  "additionalText":"",
+                  "htmlText":"",
+                  "wmlText":"",
+                  "smsText":"",
+                  "speechText":""
+               },
+               "paramList":[
+                  {
+                     "type":"addInfoParam",
+                     "name":"creationTime",
+                     "value":"08/02/22 07:11",
+                     "edit":"0"
+                  },
+                  {
+                     "type":"addInfoParam",
+                     "name":"lastModificationTime",
+                     "value":"08/02/22 07:13",
+                     "edit":"0"
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "stopID":"66000998",
+         "x":"702558",
+         "y":"323579",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7003",
+         "platformName":"A",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"50",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"15",
+            "minute":"27"
+         },
+         "realtimeTripStatus":"MONITORED",
+         "servingLine":{
+            "key":"51",
+            "code":"3",
+            "number":"321",
+            "symbol":"321",
+            "motType":"6",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Plose Gondellift",
+            "directionFrom":"Plose Gondellift",
+            "name":"Bus",
+            "liErgRiProj":{
+               "line":"02321",
+               "project":"22a",
+               "direction":"H",
+               "supplement":" ",
+               "network":"apb"
+            },
+            "destID":"66001006",
+            "stateless":"apb:02321: :H:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"019",
+            "name":"Pizzinini",
+            "publicCode":"Pizzini"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702558",
+         "y":"323579",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7003",
+         "platformName":"A",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"50",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"15",
+            "minute":"27"
+         },
+         "servingLine":{
+            "key":"13",
+            "code":"3",
+            "number":"330",
+            "symbol":"330",
+            "motType":"6",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"St. Magdalena VillnÃ¶ss",
+            "directionFrom":"Brixen, Busbahnhof",
+            "name":"Bus",
+            "liErgRiProj":{
+               "line":"00330",
+               "project":"22a",
+               "direction":"H",
+               "supplement":" ",
+               "network":"apb"
+            },
+            "destID":"66000999",
+            "stateless":"apb:00330: :H:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"025",
+            "name":"SAD Bus",
+            "publicCode":"SAD"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702569",
+         "y":"323581",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7004",
+         "platformName":"B",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"51",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"15",
+            "minute":"28"
+         },
+         "servingLine":{
+            "key":"61",
+            "code":"4",
+            "number":"320.1",
+            "symbol":"320.1",
+            "motType":"5",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Vahrn, Post",
+            "directionFrom":"Milland, Zeffer",
+            "name":"Citybus",
+            "liErgRiProj":{
+               "line":"02320",
+               "project":"22a",
+               "direction":"H",
+               "supplement":"1",
+               "network":"apb"
+            },
+            "destID":"66002580",
+            "stateless":"apb:02320:1:H:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"019",
+            "name":"Pizzinini",
+            "publicCode":"Pizzini"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702569",
+         "y":"323581",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7004",
+         "platformName":"B",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"53",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"15",
+            "minute":"30"
+         },
+         "servingLine":{
+            "key":"80",
+            "code":"3",
+            "number":"350",
+            "symbol":"350",
+            "motType":"6",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Brixen, Busbahnhof",
+            "directionFrom":"Plan",
+            "name":"Bus",
+            "liErgRiProj":{
+               "line":"00350",
+               "project":"22a",
+               "direction":"H",
+               "supplement":" ",
+               "network":"apb"
+            },
+            "destID":"66000999",
+            "stateless":"apb:00350: :H:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"025",
+            "name":"SAD Bus",
+            "publicCode":"SAD"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702558",
+         "y":"323579",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7003",
+         "platformName":"A",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"53",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"15",
+            "minute":"30"
+         },
+         "servingLine":{
+            "key":"60",
+            "code":"4",
+            "number":"320.1",
+            "symbol":"320.1",
+            "motType":"5",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Milland, Zeffer",
+            "directionFrom":"Milland, Zeffer",
+            "name":"Citybus",
+            "liErgRiProj":{
+               "line":"02320",
+               "project":"22a",
+               "direction":"H",
+               "supplement":"1",
+               "network":"apb"
+            },
+            "destID":"66002580",
+            "stateless":"apb:02320:1:H:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"019",
+            "name":"Pizzinini",
+            "publicCode":"Pizzini"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702569",
+         "y":"323581",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7004",
+         "platformName":"B",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"53",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"15",
+            "minute":"30"
+         },
+         "servingLine":{
+            "key":"23",
+            "code":"3",
+            "number":"342",
+            "symbol":"342",
+            "motType":"6",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Latzfons, Dorf",
+            "directionFrom":"Brixen, Busbahnhof",
+            "name":"Bus",
+            "liErgRiProj":{
+               "line":"02342",
+               "project":"22a",
+               "direction":"H",
+               "supplement":" ",
+               "network":"apb"
+            },
+            "destID":"66000999",
+            "stateless":"apb:02342: :H:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"019",
+            "name":"Pizzinini",
+            "publicCode":"Pizzini"
+         },
+         "stopInfos":null,
+         "lineInfos":{
+            "lineInfo":{
+               "infoLinkText":"Linie 342-S Latzfons - Feldthurns - Brixen (Schulfahrten)",
+               "infoLinkURL":"http://10.240.145.20:80/ics/XSLT_CM_SHOWADDINFO_REQUEST?infoID=10179_STA&seqID=1",
+               "infoText":{
+                  "content":"
+Ab Montag, 07.02.2022 wird die Zusatzfahrt Latzfons - Brixen mit Abfahrt um 6:58 Uhr gestrichen.
+
+",
+                  "subtitle":"Linie 342-S Latzfons - Feldthurns - Brixen (Schulfahrten)",
+                  "subject":"Streichung einer Zusatzfahrt morgens",
+                  "additionalText":"",
+                  "htmlText":"",
+                  "wmlText":"",
+                  "smsText":"",
+                  "speechText":""
+               },
+               "paramList":[
+                  {
+                     "type":"addInfoParam",
+                     "name":"creationTime",
+                     "value":"04/02/22 07:28",
+                     "edit":"0"
+                  },
+                  {
+                     "type":"addInfoParam",
+                     "name":"lastModificationTime",
+                     "value":"04/02/22 07:35",
+                     "edit":"0"
+                  }
+               ]
+            }
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702569",
+         "y":"323581",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7004",
+         "platformName":"B",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"54",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"15",
+            "minute":"31"
+         },
+         "servingLine":{
+            "key":"12",
+            "code":"3",
+            "number":"330",
+            "symbol":"330",
+            "motType":"6",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Brixen, Busbahnhof",
+            "directionFrom":"Brixen, Busbahnhof",
+            "name":"Bus",
+            "liErgRiProj":{
+               "line":"00330",
+               "project":"22a",
+               "direction":"H",
+               "supplement":" ",
+               "network":"apb"
+            },
+            "destID":"66000999",
+            "stateless":"apb:00330: :H:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"025",
+            "name":"SAD Bus",
+            "publicCode":"SAD"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702552",
+         "y":"323652",
+         "mapName":"APBV",
+         "area":"50",
+         "platform":"3",
+         "platformName":"3",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"56",
+         "occupancy":"MANY_SEATS",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"15",
+            "minute":"33"
+         },
+         "realtimeTripStatus":"MONITORED",
+         "servingLine":{
+            "key":"17",
+            "code":"6",
+            "number":"R 17168 Treno regionale",
+            "symbol":"REG",
+            "motType":"0",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Brenner, Bahnhof Brenner",
+            "directionFrom":"Meran, Bahnhof Meran",
+            "trainType":"R",
+            "trainName":"Treno regionale",
+            "trainNum":"17168",
+            "name":"Treno regionale",
+            "liErgRiProj":{
+               "line":"04102",
+               "project":"22a",
+               "direction":"R",
+               "supplement":"T",
+               "network":"apb"
+            },
+            "destID":"66001389",
+            "stateless":"apb:04102:T:R:22a",
+            "lineDisplay":"train"
+         },
+         "operator":{
+            "code":"099",
+            "name":"Trenitalia",
+            "publicCode":"TI"
+         },
+         "stopInfos":null,
+         "lineInfos":[
+            {
+               "infoLinkText":"Bahnlinie 200 Meran - Bozen (Update 07.02.2022)",
+               "infoLinkURL":"http://10.240.145.20:80/ics/XSLT_CM_SHOWADDINFO_REQUEST?infoID=10181_STA&seqID=1",
+               "infoText":{
+                  "content":"
+Aus betrieblichen Gründen bzw. aufgrund von Covid-bedingtem Ausfall von Dienstpersonal kommt es weiterhin zu folgenden Zugausfällen.
+
+\n
+Der Trenitalia Zug Nr. 17111 von Bozen nach Meran mit Abfahrt um 06:24 Uhr fällt aus. (Montag bis Samstag)
+
+\n
+Der Trenitalia Zug Nr. 17106 von Meran nach Bozen mit Abfahrt um 07:46 Uhr fällt aus. (Montag bis Samstag)
+
+\n
+Der Trenitalia Zug Nr. 22449 von Bozen nach Meran mit Abfahrt um 18:35 Uhr fällt aus. (Montag bis Freitag)
+
+\n
+Der Trenitalia Zug Nr. 16142 von Meran nach Bozen mit Abfahrt um 19:16 Uhr fällt aus.
+
+\n
+Der Trenitalia Zug Nr. 16840 von Meran nach Bozen mit Abfahrt um 19:46 Uhr fällt aus. (Montag bis Freitag)
+
+\n
+Es ist kein Schienenersatzverkehr eingerichtet. 
+
+\n
+ 
+
+\n
+Stand: 07.02.2022, 12:00 Uhr
+
+",
+                  "subtitle":"Bahnlinie 200 Meran - Bozen (Update 07.02.2022)",
+                  "subject":"Weiterhin coronabedingte ZugausfÃ¤lle",
+                  "additionalText":"",
+                  "htmlText":"",
+                  "wmlText":"",
+                  "smsText":"",
+                  "speechText":""
+               },
+               "paramList":[
+                  {
+                     "type":"addInfoParam",
+                     "name":"creationTime",
+                     "value":"07/02/22 12:10",
+                     "edit":"0"
+                  },
+                  {
+                     "type":"addInfoParam",
+                     "name":"lastModificationTime",
+                     "value":"07/02/22 12:11",
+                     "edit":"0"
+                  }
+               ]
+            },
+            {
+               "infoLinkText":"Bahnlinie 100 Brenner - Bozen (Update: 07.02.2022)",
+               "infoLinkURL":"http://10.240.145.20:80/ics/XSLT_CM_SHOWADDINFO_REQUEST?infoID=10183_STA&seqID=1",
+               "infoText":{
+                  "content":"
+Aus betrieblichen Gründen bzw. aufgrund von Covid-bedingtem Ausfall von Dienstpersonal kommt es weiterhin zu folgenden Zugausfällen. 
+
+\n
+Der Trenitalia Zug RV Nr. 3846 von Bozen nach Brenner mit Abfahrt um 19:32 Uhr fällt aus. (Montag bis Sonntag) 
+
+\n
+Der Trenitalia Zug Nr. 16041 von Brenner nach Bozen mit Abfahrt um 21:08 Uhr fällt aus. (Montag bis Sonntag) 
+
+\n
+ 
+
+\n
+Stand: 07.02.2022, 12 Uhr 
+
+\n
+
+
+
+",
+                  "subtitle":"Bahnlinie 100 Brenner - Bozen (Update: 07.02.2022)",
+                  "subject":"Weiterhin coronabedingte ZugausfÃ¤lle",
+                  "additionalText":"",
+                  "htmlText":"",
+                  "wmlText":"",
+                  "smsText":"",
+                  "speechText":""
+               },
+               "paramList":[
+                  {
+                     "type":"addInfoParam",
+                     "name":"creationTime",
+                     "value":"08/02/22 07:11",
+                     "edit":"0"
+                  },
+                  {
+                     "type":"addInfoParam",
+                     "name":"lastModificationTime",
+                     "value":"08/02/22 07:13",
+                     "edit":"0"
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "stopID":"66000998",
+         "x":"702569",
+         "y":"323581",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7004",
+         "platformName":"B",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"61",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"15",
+            "minute":"38"
+         },
+         "servingLine":{
+            "key":"34",
+            "code":"3",
+            "number":"170",
+            "symbol":"170",
+            "motType":"6",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Brixen, Vinzentinum",
+            "directionFrom":"Bozen, Busbahnhof",
+            "name":"Bus",
+            "liErgRiProj":{
+               "line":"02170",
+               "project":"22a",
+               "direction":"H",
+               "supplement":" ",
+               "network":"apb"
+            },
+            "destID":"66001145",
+            "stateless":"apb:02170: :H:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"022",
+            "name":"Simobil",
+            "publicCode":"Simobil"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702582",
+         "y":"323632",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"3039",
+         "platformName":"C",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"61",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"15",
+            "minute":"38"
+         },
+         "realtimeTripStatus":"MONITORED",
+         "servingLine":{
+            "key":"15",
+            "code":"4",
+            "number":"320.4",
+            "symbol":"320.4",
+            "motType":"5",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Brixen, Burgfrieden",
+            "directionFrom":"Brixen, Bahnhof Brixen",
+            "name":"Citybus",
+            "liErgRiProj":{
+               "line":"02320",
+               "project":"22a",
+               "direction":"H",
+               "supplement":"4",
+               "network":"apb"
+            },
+            "destID":"66002861",
+            "stateless":"apb:02320:4:H:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"019",
+            "name":"Pizzinini",
+            "publicCode":"Pizzini"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702558",
+         "y":"323579",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7003",
+         "platformName":"A",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"61",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"15",
+            "minute":"38"
+         },
+         "servingLine":{
+            "key":"9",
+            "code":"3",
+            "number":"344",
+            "symbol":"344",
+            "motType":"6",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Brixen, Busbahnhof",
+            "directionFrom":"Brixen, Busbahnhof",
+            "name":"Bus",
+            "liErgRiProj":{
+               "line":"02344",
+               "project":"22a",
+               "direction":"H",
+               "supplement":" ",
+               "network":"apb"
+            },
+            "destID":"66000999",
+            "stateless":"apb:02344: :H:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"019",
+            "name":"Pizzinini",
+            "publicCode":"Pizzini"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702569",
+         "y":"323581",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7004",
+         "platformName":"B",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"66",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"15",
+            "minute":"43"
+         },
+         "servingLine":{
+            "key":"21",
+            "code":"4",
+            "number":"320.1",
+            "symbol":"320.1",
+            "motType":"5",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Vahrn, Post",
+            "directionFrom":"Albeins, Grundschule",
+            "name":"Citybus",
+            "liErgRiProj":{
+               "line":"02320",
+               "project":"22a",
+               "direction":"H",
+               "supplement":"1",
+               "network":"apb"
+            },
+            "destID":"66001543",
+            "stateless":"apb:02320:1:H:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"019",
+            "name":"Pizzinini",
+            "publicCode":"Pizzini"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702569",
+         "y":"323581",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7004",
+         "platformName":"B",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"67",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"15",
+            "minute":"44"
+         },
+         "servingLine":{
+            "key":"13",
+            "code":"3",
+            "number":"328",
+            "symbol":"328",
+            "motType":"6",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Natz - Schabs",
+            "directionFrom":"Brixen, Bahnhof Brixen",
+            "name":"Bus",
+            "liErgRiProj":{
+               "line":"02328",
+               "project":"22a",
+               "direction":"H",
+               "supplement":" ",
+               "network":"apb"
+            },
+            "destID":"66000998",
+            "stateless":"apb:02328: :H:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"012",
+            "name":"KlÃ¶cker",
+            "publicCode":"Klöcker"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702569",
+         "y":"323581",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7004",
+         "platformName":"B",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"67",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"15",
+            "minute":"44"
+         },
+         "servingLine":{
+            "key":"8",
+            "code":"3",
+            "number":"325",
+            "symbol":"325",
+            "motType":"6",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Brixen, Busbahnhof",
+            "directionFrom":"Petschied, Schmied BrÃ¼cke",
+            "name":"Bus",
+            "liErgRiProj":{
+               "line":"02325",
+               "project":"22a",
+               "direction":"H",
+               "supplement":" ",
+               "network":"apb"
+            },
+            "destID":"66000999",
+            "stateless":"apb:02325: :H:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"016",
+            "name":"Mellauner",
+            "publicCode":"Mellaun"
+         }
+      },
+      {
+         "stopID":"66000998",
+         "x":"702558",
+         "y":"323579",
+         "mapName":"APBV",
+         "area":"1",
+         "platform":"7003",
+         "platformName":"A",
+         "stopName":"Brixen, Bahnhof Brixen",
+         "nameWO":"Bahnhof Brixen",
+         "countdown":"68",
+         "dateTime":{
+            "year":"2022",
+            "month":"2",
+            "day":"9",
+            "weekday":"4",
+            "hour":"15",
+            "minute":"45"
+         },
+         "servingLine":{
+            "key":"20",
+            "code":"4",
+            "number":"320.1",
+            "symbol":"320.1",
+            "motType":"5",
+            "mtSubcode":"0",
+            "realtime":"0",
+            "direction":"Albeins, Grundschule",
+            "directionFrom":"Albeins, Grundschule",
+            "name":"Citybus",
+            "liErgRiProj":{
+               "line":"02320",
+               "project":"22a",
+               "direction":"H",
+               "supplement":"1",
+               "network":"apb"
+            },
+            "destID":"66001543",
+            "stateless":"apb:02320:1:H:22a",
+            "lineDisplay":"line"
+         },
+         "operator":{
+            "code":"019",
+            "name":"Pizzinini",
+            "publicCode":"Pizzini"
+         }
+      }
+   ]
+}
