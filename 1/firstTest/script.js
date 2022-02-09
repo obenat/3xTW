@@ -15,9 +15,9 @@ function getBusTrafficFromStationURL(location, station)
   return `https://efa.sta.bz.it/apb/XML_DM_REQUEST?&locationServerActive=1&stateless=1&type_dm=any&name_dm=${location}%20${location}%20${station}&mode=direct&outputFormat=json`;
 }
 
-function getTransportationRouteURL(sourceLocation, sourceStation, destinationLocation, destinationStation)
+function getTransportationRouteURL(startLocation, startStation, endLocation, endStation)
 {
-  return `https://efa.sta.bz.it/apb/XML_TRIP_REQUEST2?locationServerActive=1&stateless=%201&type_origin=any&name_origin=${sourceLocation},%20D${sourceStation}&type_destination=any&name_destination=${destinationLocation},%20${destinationStation}&itdTripDateTimeDepArr=dep&itdTime=0800&itdDate=20220209&calcNumberOfTrips=5&maxChanges=9&routeType=LEASTTIME&useProxFootSearch=1&coordOutputFormatTail=4&outputFormat=JSON&coordOutputFormat=WGS84[DD.DDDDD]`;
+  return `https://efa.sta.bz.it/apb/XML_TRIP_REQUEST2?locationServerActive=1&stateless=%201&type_origin=any&name_origin=${startLocation},%20D${startStation}&type_destination=any&name_destination=${endLocation},%20${endStation}&itdTripDateTimeDepArr=dep&itdTime=0800&itdDate=20220209&calcNumberOfTrips=5&maxChanges=9&routeType=LEASTTIME&useProxFootSearch=1&coordOutputFormatTail=4&outputFormat=JSON&coordOutputFormat=WGS84[DD.DDDDD]`;
 }
 
 async function getDataFromURL(url)
@@ -43,9 +43,45 @@ function getBusesFromStation(data)
     return data.servingLines.lines;
 }
 
+function station(transportationNumber, transportationType, startLocation, startTime, endLocation, endTime, duration)
+{
+    this.transportationNumber = transportationNumber;
+    this.transportationType = transportationType;
+    this.startLocation = startLocation;
+    this.startTime = startTime;
+    this.endLocation = endLocation;
+    this.endTime = endTime;
+    this.duration = duration;
+}
+
+function getStations(data)
+{
+    let stations = [];
+
+    data.legs.forEach(x =>
+    {
+      stations.push(new station(x.mode.number, 
+                                x.mode.product, 
+                                x.points[0].name, 
+                                x.points[0].dateTime.time, 
+                                x.points[1].name, 
+                                x.points[1].dateTime.time, 
+                                x.timeMinute));
+    });
+
+    return stations;
+}
+
 function getTransportationRoute(data)
 {
-    return data.trips;
+    let routes = [];
+
+    data.trips.forEach(x => 
+    {
+        routes.push({totalDuration: x.duration, stations: getStations(x)});
+    });
+
+    return routes;
 }
 
 async function search()
@@ -54,7 +90,7 @@ async function search()
     let location1 = "Brixen";
     let station1 = "Dantestraße";
     let location2 = "Klausen";
-    let station2 = "Despar Klausen";
+    let station2 = "Bahnhof";
 
     console.log("test");
     
