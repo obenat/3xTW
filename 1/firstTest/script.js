@@ -23,11 +23,13 @@ function getTransportationRouteURL(startLocation, startStation, endLocation, end
 async function getDataFromURL(url)
 {
   const result = await fetch(url);
-  if(!result.ok)
+  const answer = await result.json();
+  return answer;
+  /*if(!result.ok)
     console.log("serverDown");
   else
     const answer = await result.json();
-  return (answer == null?"": answer);
+  return (answer == null?"": answer);*/
 }
 
 function getLocation(data, location)
