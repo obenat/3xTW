@@ -22,15 +22,14 @@ function getTransportationRouteURL(startLocation, startStation, endLocation, end
 
 async function getDataFromURL(url)
 {
-  const result = await fetch(url);
-  const answer = await result.json();
+  let result = await fetch(url);
+  let answer = null;
+  if(result.ok)
+    answer = await result.json();
+    
   return answer;
-  /*if(!result.ok)
-    console.log("serverDown");
-  else
-    const answer = await result.json();
-  return (answer == null?"": answer);*/
 }
+
 
 function getLocation(data, location)
 {
@@ -68,13 +67,14 @@ function getmotFromStation(data)
 {
   let modeOfTransport = [];
 
-  data.departureList.slice(0, 10).forEach(x => 
-  {
-    modeOfTransport.push(new mot(x.servingLine.number, 
-                                 x.servingLine.name, 
-                                 x.servingLine.direction, 
-                                 `${x.dateTime.hour}:${x.dateTime.minute}`));
-  });
+  if(data != null && data.arr.points != null)
+    data.departureList.slice(0, 10).forEach(x => 
+    {
+      modeOfTransport.push(new mot(x.servingLine.number, 
+                                  x.servingLine.name, 
+                                  x.servingLine.direction, 
+                                  `${x.dateTime.hour}:${x.dateTime.minute}`));
+    });
 
   return modeOfTransport;
 }
@@ -111,13 +111,19 @@ function getStations(data)
 function getTransportationRoute(data)
 {
   let routes = [];
-
-  data.trips.forEach(x => 
-  {
-    routes.push({totalDuration: x.duration, stations: getStations(x)});
-  });
+  if(data != null && data.addOdvs != null)
+    data.trips.forEach(x => 
+    {
+      routes.push({totalDuration: x.duration, stations: getStations(x)});
+    });
 
   return routes;
+}
+
+async function getWeather(location)
+{
+  let BNData = getLocation(await getDataFromURL(getBNURL()), location.toLowerCase());
+  return BNData!=null?getWeatherData(BNData, await getDataFromURL(getOWURL(BNData.latitude, BNData.longitude))):BNData;
 }
 
 async function searchRoute(location1, location2)
@@ -137,11 +143,11 @@ async function searchRoute(location1, location2)
   
   let testData1 = getTransportationRoute(await getDataFromURL(getTransportationRouteURL(testlocation1, teststation1, testlocation2, teststation2)));
   let testData2 = getmotFromStation(await getDataFromURL(getBusTrafficFromStationURL(testlocation1, teststation1)));
-  let BNData = getLocation(await getDataFromURL(getBNURL()), testlocation.toLowerCase());
-  let testData3 = getWeatherData(BNData, await getDataFromURL(getOWURL(BNData.latitude, BNData.longitude)));
+  let testData3 = getWeather(testlocation);
   console.log(testData1);
   console.log(testData2);
   console.log(testData3);
+  /*console.log(testData3);*/
 
   /*let BNData = getLocation(await getDataFromURL(getBNURL()), location.toLowerCase());
   let data = getWeatherData(BNData, await getDataFromURL(getOpenWeatherURL(BNData.latitude, BNData.longitude)));
