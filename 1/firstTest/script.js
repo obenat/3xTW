@@ -1,26 +1,28 @@
 const WEATHER_API_KEY = "e5d1be98e9c5ef580a9e3ed6b627664b";
 
-function getOWURL(lat, lon)
-{
-    return `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`;
-}
-
-function getBNURL(value = 1)
+//Get Data
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+function getBNURL(value = 1)//BuergernetzApi -> 1 = Valley, 3 = Mountain
 {
   return `http://daten.buergernetz.bz.it/services/weather/station?categoryId=${value}&lang=de&format=json`;
 }
 
-function getBusTrafficFromStationURL(location, station)
+function getOWURL(lat, lon)//OpenWeatherApi
+{
+    return `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`;
+}
+
+function getEFAStationURL(location, station)//EfaApi -> Buses from one station
 {
   return `https://efa.sta.bz.it/apb/XML_DM_REQUEST?&locationServerActive=1&stateless=1&type_dm=any&name_dm=${location}%20${location}%20${station}&mode=direct&outputFormat=json`;
 }
 
-function getTransportationRouteURL(startLocation, startStation, endLocation, endStation)
+function getEFAnRouteURL(startLocation, startStation, endLocation, endStation)//EfaApi -> Route from station to other station
 {
   return `https://efa.sta.bz.it/apb/XML_TRIP_REQUEST2?locationServerActive=1&stateless=%201&type_origin=any&name_origin=${startLocation},%20D${startStation}&type_destination=any&name_destination=${endLocation},%20${endStation}&itdTripDateTimeDepArr=dep&itdTime=0800&itdDate=20220209&calcNumberOfTrips=5&maxChanges=9&routeType=LEASTTIME&useProxFootSearch=1&coordOutputFormatTail=4&outputFormat=JSON&coordOutputFormat=WGS84[DD.DDDDD]`;
 }
 
-async function getDataFromURL(url)
+async function getDataFromURL(url)//make request
 {
   let result = await fetch(url);
   let answer = null;
@@ -29,14 +31,10 @@ async function getDataFromURL(url)
     
   return answer;
 }
-
-
-function getLocation(data, location)
-{
-  return data.rows.find(x => {return x.name.toLowerCase() === location});
-}
-
-function weatherLocation(location, temperature, windDirection, windSpeed, windSpeed, humidity)
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+//Get Weather
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+function weatherLocation(location, temperature, windDirection, windSpeed, windSpeed, humidity)//create location object
 {
   this.location = location;
   this.temperature = temperature;
@@ -45,7 +43,7 @@ function weatherLocation(location, temperature, windDirection, windSpeed, windSp
   this.humidity = humidity;
 }
 
-function getWeatherData(BNData, OWData)
+function getWeatherData(BNData, OWData)//get data for location object
 {
   return new weatherLocation(BNData.name, 
                              BNData.t + "°C", 
@@ -55,7 +53,20 @@ function getWeatherData(BNData, OWData)
                              OWData.weather[0].description);
 }
 
-function mot(transportationNumber, transportationType, endLocation, startTime) //modeOfTransportation
+function getLocation(data, location)//search location in data
+{
+  return data.rows.find(x => {return x.name.toLowerCase() === location});
+}
+
+async function getWeather(location)//concat data from OWApi and BNApi
+{
+  let BNData = getLocation(await getDataFromURL(getBNURL()), location.toLowerCase());
+  return BNData!=null?getWeatherData(BNData, await getDataFromURL(getOWURL(BNData.latitude, BNData.longitude))):BNData;
+}
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+//Get buses from one station
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+function mot(transportationNumber, transportationType, endLocation, startTime) //modeOfTransportation object
 {
   this.transportationNumber = transportationNumber;
   this.transportationType = transportationType;
@@ -63,7 +74,7 @@ function mot(transportationNumber, transportationType, endLocation, startTime) /
   this.startTime = startTime;
 }
 
-function getmotFromStation(data)
+function getmotFromStation(data)//make object for each mot
 {
   let modeOfTransport = [];
 
@@ -78,8 +89,10 @@ function getmotFromStation(data)
 
   return modeOfTransport;
 }
-
-function station(transportationNumber, transportationType, startLocation, startTime, endLocation, endTime, duration)
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+//Get Route from station to other station
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+function station(transportationNumber, transportationType, startLocation, startTime, endLocation, endTime, duration)//create a station object
 {
   this.transportationNumber = transportationNumber;
   this.transportationType = transportationType;
@@ -90,7 +103,7 @@ function station(transportationNumber, transportationType, startLocation, startT
   this.duration = duration;
 }
 
-function getStations(data)
+function getStations(data)//fill and put all station objects into array
 {
   let stations = [];
 
@@ -108,7 +121,7 @@ function getStations(data)
   return stations;
 }
 
-function getTransportationRoute(data)
+function getTransportationRoute(data)//make object for every single route
 {
   let routes = [];
   if(data != null && data.addOdvs != null)
@@ -119,12 +132,8 @@ function getTransportationRoute(data)
 
   return routes;
 }
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
 
-async function getWeather(location)
-{
-  let BNData = getLocation(await getDataFromURL(getBNURL()), location.toLowerCase());
-  return BNData!=null?getWeatherData(BNData, await getDataFromURL(getOWURL(BNData.latitude, BNData.longitude))):BNData;
-}
 
 async function searchRoute(location1, location2)
 {
@@ -141,8 +150,8 @@ async function searchRoute(location1, location2)
 
   console.log("test");
   
-  let testData1 = getTransportationRoute(await getDataFromURL(getTransportationRouteURL(testlocation1, teststation1, testlocation2, teststation2)));
-  let testData2 = getmotFromStation(await getDataFromURL(getBusTrafficFromStationURL(testlocation1, teststation1)));
+  let testData1 = getTransportationRoute(await getDataFromURL(getEfaRouteURL(testlocation1, teststation1, testlocation2, teststation2)));
+  let testData2 = getmotFromStation(await getDataFromURL(getEFAStationURL(testlocation1, teststation1)));
   let testData3 = getWeather(testlocation);
   console.log(testData1);
   console.log(testData2);
@@ -152,8 +161,8 @@ async function searchRoute(location1, location2)
   /*let BNData = getLocation(await getDataFromURL(getBNURL()), location.toLowerCase());
   let data = getWeatherData(BNData, await getDataFromURL(getOpenWeatherURL(BNData.latitude, BNData.longitude)));
   console.log(data);
-  console.log(await getDataFromURL(getBusTrafficFromStationURL(location1, station1)));
-  console.log(await getDataFromURL(getTransportationRouteURL(location1, station1, location2, station2)));*/
+  console.log(await getDataFromURL(getEFAStationURL(location1, station1)));
+  console.log(await getDataFromURL(getEfaRouteURL(location1, station1, location2, station2)));*/
 }
 
 
