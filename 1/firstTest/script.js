@@ -122,16 +122,16 @@ function getTransportationRoute(data)
 
 async function searchRoute(location1, location2)
 {
-  /*let testlocation = "Brixen - Vahrn";
+  let testlocation = "Brixen - Vahrn";
   let testlocation1 = "Brixen";
   let teststation1 = "Dantestraße";
   let testlocation2 = "Klausen";
-  let teststation2 = "Bahnhof";*/
-  let testlocation = "asdf";
+  let teststation2 = "Bahnhof";
+  /*let testlocation = "asdf";
   let testlocation1 = "Klusen";
   let teststation1 = "BUhnhaof";
   let testlocation2 = "Boazen";
-  let teststation2 = "Ortler";
+  let teststation2 = "Ortler";*/
 
   console.log("test");
   
