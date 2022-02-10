@@ -1,6 +1,6 @@
-const WEATHER_API_KEY = "e5d1be98e9c5ef580a9e3ed6b627664b"; 
+const WEATHER_API_KEY = "e5d1be98e9c5ef580a9e3ed6b627664b";
 
-function getOPURL(lat, lon)
+function getOWURL(lat, lon)
 {
     return `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`;
 }
@@ -22,86 +22,130 @@ function getTransportationRouteURL(startLocation, startStation, endLocation, end
 
 async function getDataFromURL(url)
 {
-    const result = await fetch(url);
-    const json = await result.json();
-    return json;
+  const result = await fetch(url);
+  if(!result.ok)
+    console.log("serverDown");
+  else
+    const answer = await result.json();
+  return (answer == null?"": answer);
 }
 
 function getLocation(data, location)
 {
-    return data.rows.find(x => {return x.name.toLowerCase() === location});
+  return data.rows.find(x => {return x.name.toLowerCase() === location});
+}
+
+function weatherLocation(location, temperature, windDirection, windSpeed, windSpeed, humidity)
+{
+  this.location = location;
+  this.temperature = temperature;
+  this.windDirection = windDirection;
+  this.windSpeed = windSpeed;
+  this.humidity = humidity;
 }
 
 function getWeatherData(BNData, OWData)
 {
-    return [BNData.name, `${BNData.t}°C`, BNData.dd, `${BNData.ff}km/h`, `${BNData.rh}%`, OWData.weather[0].description]
-    //return `Ort: ${BNData.name}\nLufttemperatur: ${BNData.t}\nWindrichtung: ${BNData.dd}\nWindgeschwindigkeit: ${BNData.ff}\nLuftfeuchtigkeit: ${BNData.rh}%\nWetter: ${OWData.weather[0].description}`;
+  return new weatherLocation(BNData.name, 
+                             BNData.t + "°C", 
+                             BNData.dd, 
+                             BNData.ff + "km/h",
+                             BNData.rh + "%",
+                             OWData.weather[0].description);
 }
 
-function getBusesFromStation(data)
+function mot(transportationNumber, transportationType, endLocation, startTime) //modeOfTransportation
 {
-    return data.servingLines.lines;
+  this.transportationNumber = transportationNumber;
+  this.transportationType = transportationType;
+  this.endLocation = endLocation;
+  this.startTime = startTime;
+}
+
+function getmotFromStation(data)
+{
+  let modeOfTransport = [];
+
+  data.departureList.slice(0, 10).forEach(x => 
+  {
+    modeOfTransport.push(new mot(x.servingLine.number, 
+                                 x.servingLine.name, 
+                                 x.servingLine.direction, 
+                                 `${x.dateTime.hour}:${x.dateTime.minute}`));
+  });
+
+  return modeOfTransport;
 }
 
 function station(transportationNumber, transportationType, startLocation, startTime, endLocation, endTime, duration)
 {
-    this.transportationNumber = transportationNumber;
-    this.transportationType = transportationType;
-    this.startLocation = startLocation;
-    this.startTime = startTime;
-    this.endLocation = endLocation;
-    this.endTime = endTime;
-    this.duration = duration;
+  this.transportationNumber = transportationNumber;
+  this.transportationType = transportationType;
+  this.startLocation = startLocation;
+  this.startTime = startTime;
+  this.endLocation = endLocation;
+  this.endTime = endTime;
+  this.duration = duration;
 }
 
 function getStations(data)
 {
-    let stations = [];
+  let stations = [];
 
-    data.legs.forEach(x =>
-    {
-      stations.push(new station(x.mode.number, 
-                                x.mode.product, 
-                                x.points[0].name, 
-                                x.points[0].dateTime.time, 
-                                x.points[1].name, 
-                                x.points[1].dateTime.time, 
-                                x.timeMinute));
-    });
+  data.legs.forEach(x =>
+  {
+    stations.push(new station(x.mode.number, 
+                              x.mode.product, 
+                              x.points[0].name, 
+                              x.points[0].dateTime.time, 
+                              x.points[1].name, 
+                              x.points[1].dateTime.time, 
+                              x.timeMinute));
+  });
 
-    return stations;
+  return stations;
 }
 
 function getTransportationRoute(data)
 {
-    let routes = [];
+  let routes = [];
 
-    data.trips.forEach(x => 
-    {
-        routes.push({totalDuration: x.duration, stations: getStations(x)});
-    });
+  data.trips.forEach(x => 
+  {
+    routes.push({totalDuration: x.duration, stations: getStations(x)});
+  });
 
-    return routes;
+  return routes;
 }
 
-async function search()
+async function searchRoute(location1, location2)
 {
-    let location = "Brixen - Vahrn";
-    let location1 = "Brixen";
-    let station1 = "Dantestraße";
-    let location2 = "Klausen";
-    let station2 = "Bahnhof";
+  /*let testlocation = "Brixen - Vahrn";
+  let testlocation1 = "Brixen";
+  let teststation1 = "Dantestraße";
+  let testlocation2 = "Klausen";
+  let teststation2 = "Bahnhof";*/
+  let testlocation = "asdf";
+  let testlocation1 = "Klusen";
+  let teststation1 = "BUhnhaof";
+  let testlocation2 = "Boazen";
+  let teststation2 = "Ortler";
 
-    console.log("test");
-    
-    let testData = await getDataFromURL(getTransportationRouteURL(location1, station1, location2, station2));
-    console.log(getTransportationRoute(testData));
+  console.log("test");
+  
+  let testData1 = getTransportationRoute(await getDataFromURL(getTransportationRouteURL(testlocation1, teststation1, testlocation2, teststation2)));
+  let testData2 = getmotFromStation(await getDataFromURL(getBusTrafficFromStationURL(testlocation1, teststation1)));
+  let BNData = getLocation(await getDataFromURL(getBNURL()), testlocation.toLowerCase());
+  let testData3 = getWeatherData(BNData, await getDataFromURL(getOWURL(BNData.latitude, BNData.longitude)));
+  console.log(testData1);
+  console.log(testData2);
+  console.log(testData3);
 
-    /*let BNData = getLocation(await getDataFromURL(getBNURL()), location.toLowerCase());
-    let data = getWeatherData(BNData, await getDataFromURL(getOpenWeatherURL(BNData.latitude, BNData.longitude)));
-    console.log(data);
-    console.log(await getDataFromURL(getBusTrafficFromStationURL(location1, station1)));
-    console.log(await getDataFromURL(getTransportationRouteURL(location1, station1, location2, station2)));*/
+  /*let BNData = getLocation(await getDataFromURL(getBNURL()), location.toLowerCase());
+  let data = getWeatherData(BNData, await getDataFromURL(getOpenWeatherURL(BNData.latitude, BNData.longitude)));
+  console.log(data);
+  console.log(await getDataFromURL(getBusTrafficFromStationURL(location1, station1)));
+  console.log(await getDataFromURL(getTransportationRouteURL(location1, station1, location2, station2)));*/
 }
 
 
@@ -131,7 +175,7 @@ async function search()
   return fetch(url)
     .then((response) => response.json())
     .then((responseJSON) => {return responseJSON});
-}*/
+}
 
 //OpenWeather API
 async function getWeatherFromOpenWeather(lat, lon)
@@ -153,9 +197,9 @@ async function getweatherFromBuergernetzValley()
 /*async caller() {
     const json = await this.getJSON();  // command waits until completion
     console.log(json.hello);            // hello is now available
-}*/
+}
 
-function searchLocation(input, location)
+/*function searchLocation(input, location)
 {
     console.log(input[0]);
   //let matches  = input.filter(rows => rows['name'] === location);
@@ -168,7 +212,7 @@ function searchLocation(input, location)
   //Object.keys(data.shareInfo[i]).length
     /*for(let count = 0; count < Object.keys(input.rows[count]).length; count++)
         if(input.rows[count].name.toLowerCase() == location.toLowerCase())
-          return input.rows[count];*/
+          return input.rows[count];
     return "test";
 }
 
@@ -186,7 +230,7 @@ async function getWeather(location)
     /*let opa = getWeatherFromOpenWeather(bnv.latitu)
     console.log(bnv);*/
     /*let test = await this.getWeather("46.8850", "11.4386");
-    console.log(test);*/
+    console.log(test);
 }
 
 var datasetBuerger = ""
@@ -201,7 +245,7 @@ var datasetWeatherApi = ""
     //console.log(datasetBuerger.rows[0]);
     //console.log("test");
     //console.log(await getWeather("46.8850", "11.4386"));
-}*/
+}
 /*
 fetch('http://daten.buergernetz.bz.it/services/weather/station?categoryId=1&lang=de&format=json')
   .then(response => response.json())
@@ -271,3 +315,4 @@ coord": {
 
 
 //Fahrplan Api https://efa.sta.bz.it/apb/XML_DM_REQUEST?&locationServerActive=1&stateless=1&type_dm=any&name_dm=Brixen%20Brixen%20Dantestra%C3%9Fe&mode=direct&outputFormat=json
+//10.10.30.15*/
