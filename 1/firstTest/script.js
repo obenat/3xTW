@@ -17,9 +17,14 @@ function getEFAStationURL(location, station)//EfaApi -> Buses from one station
   return `https://efa.sta.bz.it/apb/XML_DM_REQUEST?&locationServerActive=1&stateless=1&type_dm=any&name_dm=${location}%20${location}%20${station}&mode=direct&outputFormat=json`;
 }
 
-function getEFAnRouteURL(startLocation, startStation, endLocation, endStation)//EfaApi -> Route from station to other station
+function getEFARouteURL(startLocation, startStation, endLocation, endStation)//EfaApi -> Route from station to other station
 {
   return `https://efa.sta.bz.it/apb/XML_TRIP_REQUEST2?locationServerActive=1&stateless=%201&type_origin=any&name_origin=${startLocation},%20D${startStation}&type_destination=any&name_destination=${endLocation},%20${endStation}&itdTripDateTimeDepArr=dep&itdTime=0800&itdDate=20220209&calcNumberOfTrips=5&maxChanges=9&routeType=LEASTTIME&useProxFootSearch=1&coordOutputFormatTail=4&outputFormat=JSON&coordOutputFormat=WGS84[DD.DDDDD]`;
+}
+
+function getStationsURL(location)
+{
+  return `https://efa.sta.bz.it/apb/XML_STOPFINDER_REQUEST?locationServerActive=1&outputFormat=JSON&type_sf=any&name_sf=${location}`;
 }
 
 async function getDataFromURL(url)//make request
@@ -34,13 +39,14 @@ async function getDataFromURL(url)//make request
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
 //Get Weather
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
-function weatherLocation(location, temperature, windDirection, windSpeed, windSpeed, humidity)//create location object
+function weatherLocation(location, temperature, windDirection, windSpeed, windSpeed, humidity, iconCode)//create location object
 {
   this.location = location;
   this.temperature = temperature;
   this.windDirection = windDirection;
   this.windSpeed = windSpeed;
   this.humidity = humidity;
+  this.iconCode = iconCode;
 }
 
 function getWeatherData(BNData, OWData)//get data for location object
@@ -50,7 +56,8 @@ function getWeatherData(BNData, OWData)//get data for location object
                              BNData.dd, 
                              BNData.ff + "km/h",
                              BNData.rh + "%",
-                             OWData.weather[0].description);
+                             OWData.weather[0].description,
+                             OWData.weather[0].icon);
 }
 
 function getLocation(data, location)//search location in data
@@ -78,7 +85,7 @@ function getmotFromStation(data)//make object for each mot
 {
   let modeOfTransport = [];
 
-  if(data != null && data.arr.points != null)
+  //if(data != null && data.arr.points != null)
     data.departureList.slice(0, 10).forEach(x => 
     {
       modeOfTransport.push(new mot(x.servingLine.number, 
@@ -124,7 +131,7 @@ function getStations(data)//fill and put all station objects into array
 function getTransportationRoute(data)//make object for every single route
 {
   let routes = [];
-  if(data != null && data.addOdvs != null)
+  //if(data != null && data.addOdvs != null)
     data.trips.forEach(x => 
     {
       routes.push({totalDuration: x.duration, stations: getStations(x)});
@@ -134,7 +141,8 @@ function getTransportationRoute(data)//make object for every single route
 }
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
 
-
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
 async function searchRoute(location1, location2)
 {
   let testlocation = "Brixen - Vahrn";
@@ -148,9 +156,7 @@ async function searchRoute(location1, location2)
   let testlocation2 = "Boazen";
   let teststation2 = "Ortler";*/
 
-  console.log("test");
-  
-  let testData1 = getTransportationRoute(await getDataFromURL(getEfaRouteURL(testlocation1, teststation1, testlocation2, teststation2)));
+  let testData1 = getTransportationRoute(await getDataFromURL(getEFARouteURL(testlocation1, teststation1, testlocation2, teststation2)));
   let testData2 = getmotFromStation(await getDataFromURL(getEFAStationURL(testlocation1, teststation1)));
   let testData3 = getWeather(testlocation);
   console.log(testData1);
