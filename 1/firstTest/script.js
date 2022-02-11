@@ -22,7 +22,7 @@ function getEFARouteURL(startLocation, startStation, endLocation, endStation)//E
   return `https://efa.sta.bz.it/apb/XML_TRIP_REQUEST2?locationServerActive=1&stateless=%201&type_origin=any&name_origin=${startLocation},%20D${startStation}&type_destination=any&name_destination=${endLocation},%20${endStation}&itdTripDateTimeDepArr=dep&itdTime=0800&itdDate=20220209&calcNumberOfTrips=5&maxChanges=9&routeType=LEASTTIME&useProxFootSearch=1&coordOutputFormatTail=4&outputFormat=JSON&coordOutputFormat=WGS84[DD.DDDDD]`;
 }
 
-function getStationsURL(location)
+function getStopFinderURL(location)
 {
   return `https://efa.sta.bz.it/apb/XML_STOPFINDER_REQUEST?locationServerActive=1&outputFormat=JSON&type_sf=any&name_sf=${location}`;
 }
@@ -30,10 +30,11 @@ function getStationsURL(location)
 async function getDataFromURL(url)//make request
 {
   let result = await fetch(url);
+  console.log(result);
   let answer = null;
   if(result.ok)
     answer = await result.json();
-    
+  console.log(answer);
   return answer;
 }
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -84,8 +85,8 @@ function mot(transportationNumber, transportationType, endLocation, startTime) /
 function getmotFromStation(data)//make object for each mot
 {
   let modeOfTransport = [];
-
-  //if(data != null && data.arr.points != null)
+  console.log(data);
+  if(data.servingLine != null)
     data.departureList.slice(0, 10).forEach(x => 
     {
       modeOfTransport.push(new mot(x.servingLine.number, 
@@ -131,7 +132,7 @@ function getStations(data)//fill and put all station objects into array
 function getTransportationRoute(data)//make object for every single route
 {
   let routes = [];
-  //if(data != null && data.addOdvs != null)
+  if(data.points != null)
     data.trips.forEach(x => 
     {
       routes.push({totalDuration: x.duration, stations: getStations(x)});
@@ -140,28 +141,38 @@ function getTransportationRoute(data)//make object for every single route
   return routes;
 }
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
-
+//Get Stations from locations
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
+function stopFinder(location)
+{
+  let locations = [];
+  if(location.stopFinder.points != null)
+    location.stopFinder.points.forEach(x => locations.push(x.name));
+  return locations;
+}
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
 async function searchRoute(location1, location2)
 {
-  let testlocation = "Brixen - Vahrn";
+  /*let testlocation = "Brixen - Vahrn";
   let testlocation1 = "Brixen";
   let teststation1 = "Dantestraße";
   let testlocation2 = "Klausen";
-  let teststation2 = "Bahnhof";
-  /*let testlocation = "asdf";
-  let testlocation1 = "Klusen";
-  let teststation1 = "BUhnhaof";
+  let teststation2 = "Bahnhof";*/
+  let testlocation = "asdf";
+  let testlocation1 = "ddddddddd";
+  let teststation1 = "ffffffff";
   let testlocation2 = "Boazen";
-  let teststation2 = "Ortler";*/
+  let teststation2 = "Ortler";
 
-  let testData1 = getTransportationRoute(await getDataFromURL(getEFARouteURL(testlocation1, teststation1, testlocation2, teststation2)));
+  //let testData1 = getTransportationRoute(await getDataFromURL(getEFARouteURL(testlocation1, teststation1, testlocation2, teststation2)));
   let testData2 = getmotFromStation(await getDataFromURL(getEFAStationURL(testlocation1, teststation1)));
-  let testData3 = getWeather(testlocation);
-  console.log(testData1);
+  //let testData3 = await getWeather(testlocation);
+  /*console.log(testData1);
   console.log(testData2);
-  console.log(testData3);
+  console.log(testData3);*/
+  //let asdf = stopFinder(await getDataFromURL(getStopFinderURL("Bx")));
+  console.log(testData2);
+  //console.log(testData3.iconCode);
   /*console.log(testData3);*/
 
   /*let BNData = getLocation(await getDataFromURL(getBNURL()), location.toLowerCase());
