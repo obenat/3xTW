@@ -131,14 +131,13 @@ function mot(transportationNumber, transportationType, endLocation, startTime) /
 function getmotFromStation(data)//make object for each mot
 {
     let modeOfTransport = [];
-    console.log(data);
     if(data.departureList != null)
     data.departureList.slice(0, 10).forEach(x => 
     {
       modeOfTransport.push(new mot(x.servingLine.number, 
                                   x.servingLine.name, 
                                   x.servingLine.direction, 
-                                  `${x.dateTime.hour}:${x.dateTime.minute}`));
+                                  `${x.dateTime.hour}:${(x.dateTime.minute.length==1? "0" + x.dateTime.minute: x.dateTime.minute)}`));
     });
 
     return modeOfTransport;
