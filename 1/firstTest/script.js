@@ -132,7 +132,7 @@ function getmotFromStation(data)//make object for each mot
 {
     let modeOfTransport = [];
     console.log(data);
-    if(data.servingLine != null)
+    if(data.departureList != null)
     data.departureList.slice(0, 10).forEach(x => 
     {
       modeOfTransport.push(new mot(x.servingLine.number, 
@@ -210,7 +210,7 @@ async function enter(value1, value2)
 {
     let output;
 
-    if(value1 != null && value2 != null)
+    if(value1 != "" && value2 != "")
     {
         value1 = await getStationProposals(value1);
         value2 = await getStationProposals(value2);
@@ -219,10 +219,11 @@ async function enter(value1, value2)
         displayweather(value1, value2);
         displayroute(getTransportationRoute(await getDataFromURL(getEFARouteURL(value1[0].location, value1[0].station, value2[0].location, value2[0].station))).slice(0,6));
     }
-    else if(value1 != null)
+    else if(value1 != "")
     {
         value1 = await getStationProposals(value1);
         output = getmotFromStation(await getDataFromURL(getEFAStationURL(value1[0].location, value1[0].station)));
+        console.log(output);
     }
 
 }
