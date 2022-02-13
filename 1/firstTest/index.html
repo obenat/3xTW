@@ -4,17 +4,135 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/9d86002ade.js" crossorigin="anonymous"></script>
+    <!-- Das neueste kompilierte und minimierte CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./index.css">
+    
     <script defer src="./script.js"></script>
     <title>Document</title>
 </head>
 <body>
-    <div id="simpleDiv">
-        <label for="sName">Source Name</label><br>
-        <input type="text" id="sName" name="lName" onkeyup="getProposals(this.value)"><br><br>
-        <label for="dName">Destination Name</label><br>
-        <input type="text" id ="dName" name="dName" onkeyup="getProposals(this.value)"><br><br>
-        <input type="button" id="simpleButton" value="Enter" onclick="enter(sName.value, dName.value)">
-    </div>
+    <header>
+        <a href="#" class="logo">FLMYR</a>
+        <ul>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="#">Tutorial</a></li>
+        </ul>
+        
+    </header>
+    <section class="banner"></section>
+    <main>
+        <div id="simpleDiv" class="myPos">
+
+            <input type="text" class="form-control" id="sName" name="lName" placeholder="START"><br><br>
+            <input type="text" class="form-control" id ="dName" name="dName" placeholder="ZIEL"><br><br>
+            <input type="button" class="btn btn-primary" id="entbtn" value="ENTER" onclick="searchRoute()">
+            <input type="button" class="btn btn-primary" id="entbtn" value="SHOW WEATHER" onclick="searchRoute()">
+
+        </div>
+        <div id="weatherloc">
+                <div id="demoA">         
+                </div>
+                <div id="demoB">
+                </div>
+            
+        </div>
+        
+        <div id="routeDiv">
+            
+            <div id="route0" class="route">
+                <div class="names">
+                    
+                </div>
+                <div class="time">
+                    <div class="startendtime">
+                        <p class="sep"></p>
+                    </div>
+                    <div class="totalduration">
+                        <p class="totp"></p>
+                    </div>
+                </div>
+                <div class="transport"></div>
+            </div>
+            <div id="route1" class="route">
+                <div class="names"></div>
+                <div class="time">
+                    <div class="startendtime">
+                        <p class="sep"></p>
+                    </div>
+                    <div class="totalduration">
+                        <p class="totp"></p>
+                    </div>
+                </div>
+                <div class="transport"></div>
+            </div>
+            <div id="route2" class="route">
+                <div class="names"></div>
+                <div class="time">
+                    <div class="startendtime">
+                        <p class="sep"></p>
+                    </div>
+                    <div class="totalduration">
+                        <p class="totp"></p>
+                    </div>
+                </div>
+                <div class="transport"></div>
+            </div>
+            <div id="route3" class="route">
+                <div class="names"></div>
+                <div class="time">
+                    <div class="startendtime">
+                        <p class="sep"></p>
+                    </div>
+                    <div class="totalduration">
+                        <p class="totp"></p>
+                    </div>
+                </div>
+                <div class="transport"></div>
+            </div>
+            <div id="route4" class="route">
+                <div class="names"></div>
+                <div class="time">
+                    <div class="startendtime">
+                        <p class="sep"></p>
+                    </div>
+                    <div class="totalduration">
+                        <p class="totp"></p>
+                    </div>
+                </div>
+                <div class="transport"></div>
+            </div>
+            <div id="route5" class="route">
+                <div class="names"></div>
+                <div class="time">
+                    <div class="startendtime">
+                        <p class="sep"></p>
+                    </div>
+                    <div class="totalduration">
+                        <p class="totp"></p>
+                    </div>
+                </div>
+                <div class="transport"></div>
+            </div>
+
+        </div>
+        <div id="arrowAnim">
+            <div class="arrowSliding">
+              <div class="arrow"></div>
+            </div>
+            <div class="arrowSliding delay1">
+              <div class="arrow"></div>
+            </div>
+            <div class="arrowSliding delay2">
+              <div class="arrow"></div>
+            </div>
+            <div class="arrowSliding delay3">
+              <div class="arrow"></div>
+            </div>
+          </div>
+          
+    </main>
 </body>
 </html>
 <!--<input type="number" onkeyup="testIt(this.value);" />-->
