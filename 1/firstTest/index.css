@@ -11,6 +11,7 @@
 body{
     background-color: #fff;
     min-height: 100vh;
+    
 }
 
 header{
@@ -22,9 +23,9 @@ header{
     justify-content: space-between;
     align-items: center;
     transition: 0.6s;
-    padding: 40px 100px;
+    padding: 30px 100px;
     z-index: 100000;
-    background-color:#094479;
+    background-color:#11823b;
 }
 
 header .logo{
@@ -86,7 +87,7 @@ header .sticky ul li a{
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
-    background-color: #2daad8;
+    background-color: #ff4551;
     width: 50%;
     margin: auto;
     border-radius: 5px;
@@ -105,15 +106,6 @@ main{
     margin-bottom: 0%;
 }
 
-#entbtn{
-    color:#fff;
-    margin-bottom: 2%;
-}
-
-#entbtn:focus{
-    outline:0;
-}
-
 #weatherloc{
     width: 90%;
     display: flex;
@@ -128,11 +120,13 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #2daad8;
+    background-color: #eddb9f;
     border-radius: 5px;
+    margin-left:0;
+    border-color:#a1303f;
 }
 #demoB{
-    display:none;
+    display:flex;
     
 }
 
@@ -142,12 +136,11 @@ main{
 }
 
 #demoA table, #demoB table{
-    background-color:#2daad8;
+    background-color:#eddb9f;
     width: 100%;
     max-width: 100%;
     margin-bottom: 20px;
     margin-top: 20px;
-    margin-left: 20px;
 }
 
 #demoA table> tr:nth-of-type(odd) {
@@ -176,7 +169,7 @@ main{
     justify-content: center;
     align-items: center;
     height: 100%;
-    background-color: #094479;
+    background-color: #ff4551;
     vertical-align: middle;
     border-radius: 5px;
     text-align: center;
@@ -198,7 +191,7 @@ main{
 }
 
 .trsnumb{
-    background-color: #094479;
+    background-color: #ff4551;
     height: 100%;
     width: 13%;
     border-radius: 5px;
@@ -229,18 +222,25 @@ main{
     text-align: center;
 }
 
+
+
 .route{
-    background-color: #2daad8;
+    background-color: #eddb9f;
     display: block;
     margin: 5%;
+    margin-top:2.5%;
+    margin-bottom: 0%;
     padding:2.5%;
-    border-radius: 5px;
+    border: 2px solid #a1303f;
+    border-bottom: 0;
+    border-radius: 5px 5px 0 0;
 }
 
+#routeDiv{
+    display:none;
+}
 
-
-  
-.btn {
+.btn{
     display: inline-block;
     font-weight: 400;
     color: #212529;
@@ -257,19 +257,108 @@ main{
     line-height: 1.5;
     border-radius: 0.25rem;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    width: 50%;
-    height: 8vh;;
+    width: 100%;
+    height: 8vh;
+    margin-bottom: 2%;
   }
+
   .btn-primary {
     color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
+    background-color: #a1303f;
+    border-color: #a1303f;
   }
   
   .btn-primary:hover {
     color: #fff;
-    background-color: #0069d9;
-    border-color: #0062cc;
+    background-color: #a1303f;
+    border-color: #a1303f;
   }  
 
-  
+.entbtn, .entbtn:active, .entbtn:active:focus, .entbtn:visited, .entbtn:focus {  
+    color: #dcdcdc;    
+    background-color: #a1303f;         
+    outline: none;
+    border:none; 
+    font-size:1em;
+}
+
+.seemore{
+    
+    background-color: red;
+    height: 3vh;
+    margin-left:5%;
+    margin-right:5%;
+    border-radius: 0 0 5px 5px;
+    margin-bottom: 5%;
+}
+
+.smbtn{
+    width: 100%;
+    background-color: #a1303f;
+    border-style: none;
+    border-radius: 0 0 5px 5px;
+}
+
+.sminfo{
+    margin-top:2%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    height: 20%;
+    background-color: #ff4551;
+    border-radius: 5px;
+    padding: 2% 0 2% 0;
+}
+
+.point1, .point2, .point4{
+    color:#000;
+    font-size: 1em;
+}
+
+.sec1, .sec2, .sec3, .sec4, .sec5{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.sec1, .sec3{
+    width: 30%;
+}
+.sec2{
+    width: 10%;
+}
+
+.sec4{
+    width: 15%;
+}
+.sec5{
+    width: 15%;
+}
+.sec1 div, .sec2 div, .sec3 div, .sec4 div{
+    text-align: center;
+    width: 100%;
+}
+
+#result {
+    border: 1px dotted #ccc;
+    padding: 3px;
+    color:black;
+  }
+  #result ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    color:black;
+  }
+  #result ul li {
+    padding: 5px 0;
+    color:black;
+    background-color: black;
+  }
+  #result ul li:hover {
+    background: #eee;
+    color:black;
+  }
