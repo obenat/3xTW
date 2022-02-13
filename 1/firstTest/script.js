@@ -1,4 +1,80 @@
+function getStopFinderURL(location)
+{
+  return `https://efa.sta.bz.it/apb/XML_STOPFINDER_REQUEST?locationServerActive=1&outputFormat=JSON&type_sf=any&name_sf=${location}`;
+}
+
+function getEFAStationURL(location, station)//EfaApi -> Buses from one station
+{
+  return `https://efa.sta.bz.it/apb/XML_DM_REQUEST?&locationServerActive=1&stateless=1&type_dm=any&name_dm=${location}%20${location}%20${station}&mode=direct&outputFormat=json`;
+}
+
+function stopFinder(location)
+{
+  let locations = [];
+  console.log(locations);
+  if(location.stopFinder.points != null)
+    location.stopFinder.points.forEach(x => locations.push(x.name));
+  return locations;
+}
+
+async function getDataFromURL(url)//make request
+{
+  let result = await fetch(url);
+  let answer = null;
+  if(result.ok)
+    answer = await result.json();
+  return answer;
+}
+
+function convertLocation(location)
+{
+  let las = location.split(", ");//location and station
+  if(las.length == 2)
+    return las;
+
+  return null;
+}
+
+async function enter(sourceValue, destinationValue)
+{
+  let test1 = stopFinder(getDataFromURL(await getStopFinderURL(sourceValue)));
+  let test2 = stopFinder(getDataFromURL(await getStopFinderURL(destinationValue)));
+  console.log(test1 + " " + test2);
+  //sourceValue = convertLocation(sourceValue);
+  //destinationValue = convertLocation(destinationValue);
+/*
+  if(sourceValue != null && destinationValue != null)
+  {
+    
+  }
+  else if(sourceValue != null || destinationValue != null)
+  {
+    getEFAStationURL(sourceValue)
+    (sourceValue != null ? sourcevalue : destinationValue)
+  }*/
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const WEATHER_API_KEY = "e5d1be98e9c5ef580a9e3ed6b627664b";
+const delay = 5000;
+let lastTime = Date.now();
 
 //Get Data
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -30,11 +106,9 @@ function getStopFinderURL(location)
 async function getDataFromURL(url)//make request
 {
   let result = await fetch(url);
-  console.log(result);
   let answer = null;
   if(result.ok)
     answer = await result.json();
-  console.log(answer);
   return answer;
 }
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -132,6 +206,10 @@ function getStations(data)//fill and put all station objects into array
 function getTransportationRoute(data)//make object for every single route
 {
   let routes = [];
+<<<<<<< HEAD
+=======
+
+>>>>>>> 80a6dcb3baad4e4b09a488fff981b9d39f8fa41e
   if(data.trips != null)
     data.trips.forEach(x => 
     {
@@ -143,39 +221,69 @@ function getTransportationRoute(data)//make object for every single route
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
 //Get Stations from locations
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
-function stopFinder(location)
-{
-  let locations = [];
-  if(location.stopFinder.points != null)
-    location.stopFinder.points.forEach(x => locations.push(x.name));
-  return locations;
-}
+
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+async function getProposals(input)
+{
+  let currentTime = Date.now();
+  let proposals = null;
+  if(input.length > 3 && currentTime > lastTime + delay)
+  {
+    lastTime = currentTime;
+    proposals = stopFinder(await getDataFromURL(getStopFinderURL(input))).slice(0, 5);
+  }
+
+  return proposals;
+}
+
 async function searchRoute(location1, location2)
 {
+<<<<<<< HEAD
   let testlocation = "Brixen - Vahrn";
   let testlocation1 = "Brixen";
   let teststation1 = "Dantestraße";
   let testlocation2 = "Klausen";
   let teststation2 = "Bahnhof";/*
   let testlocation = "asdf";
+=======
+  console.log(location1 + " " + location2);
+
+  let testlocation = "Brixen Bahnhof";
+  let testlocation1 = "Brixen";
+  let teststation1 = "Dantestraße";
+  let testlocation2 = "Klausen";
+  let teststation2 = "Bahnhof";
+  /*let testlocation = "asdf";
+>>>>>>> 80a6dcb3baad4e4b09a488fff981b9d39f8fa41e
   let testlocation1 = "ddddddddd";
   let teststation1 = "ffffffff";
   let testlocation2 = "Boazen";
   let teststation2 = "Ortler";*/
+<<<<<<< HEAD
   //var clone=document.getElementById("routeDiv").cloneNode();
   let testData1 = getTransportationRoute(await getDataFromURL(getEFARouteURL(testlocation1, teststation1, testlocation2, teststation2)));
   let testData2 = getmotFromStation(await getDataFromURL(getEFAStationURL(testlocation1, teststation1)));
+=======
+
+  //let testData1 = getTransportationRoute(await getDataFromURL(getEFARouteURL(testlocation1, teststation1, testlocation2, teststation2)));
+  //let testData2 = getmotFromStation(await getDataFromURL(getEFAStationURL(testlocation1, teststation1)));
+>>>>>>> 80a6dcb3baad4e4b09a488fff981b9d39f8fa41e
   let testData3 = await getWeather(testlocation);
   /*console.log(testData1);
   console.log(testData2);
   console.log(testData3);*/
   //let asdf = stopFinder(await getDataFromURL(getStopFinderURL("Bx")));
+<<<<<<< HEAD
   console.log(testData1);
   displayroute(testData1);
   displayweather(testData3);
+=======
+  //console.log(testData1);
+>>>>>>> 80a6dcb3baad4e4b09a488fff981b9d39f8fa41e
   //console.log(testData3.iconCode);
-  /*console.log(testData3);*/
+  console.log(testData3);
 
   /*let BNData = getLocation(await getDataFromURL(getBNURL()), location.toLowerCase());
   let data = getWeatherData(BNData, await getDataFromURL(getOpenWeatherURL(BNData.latitude, BNData.longitude)));
@@ -184,6 +292,7 @@ async function searchRoute(location1, location2)
   console.log(await getDataFromURL(getEfaRouteURL(location1, station1, location2, station2)));*/
 }
 
+<<<<<<< HEAD
 
 function displayroute(data){
 
@@ -493,3 +602,10 @@ coord": {
 
 //Fahrplan Api https://efa.sta.bz.it/apb/XML_DM_REQUEST?&locationServerActive=1&stateless=1&type_dm=any&name_dm=Brixen%20Brixen%20Dantestra%C3%9Fe&mode=direct&outputFormat=json
 //10.10.30.15*/
+=======
+/*var timer;
+function chk_me(){
+   clearTimeout(timer);
+   timer=setTimeout(function validate(){...},1000);
+}*/
+>>>>>>> 80a6dcb3baad4e4b09a488fff981b9d39f8fa41e
