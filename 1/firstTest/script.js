@@ -1,21 +1,4 @@
-function getStopFinderURL(location)
-{
-  return `https://efa.sta.bz.it/apb/XML_STOPFINDER_REQUEST?locationServerActive=1&outputFormat=JSON&type_sf=any&name_sf=${location}`;
-}
-
-function getEFAStationURL(location, station)//EfaApi -> Buses from one station
-{
-  return `https://efa.sta.bz.it/apb/XML_DM_REQUEST?&locationServerActive=1&stateless=1&type_dm=any&name_dm=${location}%20${location}%20${station}&mode=direct&outputFormat=json`;
-}
-
-function stopFinder(location)
-{
-  let locations = [];
-  console.log(locations);
-  if(location.stopFinder.points != null)
-    location.stopFinder.points.forEach(x => locations.push(x.name));
-  return locations;
-}
+const WEATHER_API_KEY = "e5d1be98e9c5ef580a9e3ed6b627664b";
 
 async function getDataFromURL(url)//make request
 {
@@ -24,63 +7,6 @@ async function getDataFromURL(url)//make request
   if(result.ok)
     answer = await result.json();
   return answer;
-}
-
-function convertLocation(location)
-{
-  let las = location.split(", ");//location and station
-  if(las.length == 2)
-    return las;
-
-  return null;
-}
-
-async function enter(sourceValue, destinationValue)
-{
-  let test1 = stopFinder(getDataFromURL(await getStopFinderURL(sourceValue)));
-  let test2 = stopFinder(getDataFromURL(await getStopFinderURL(destinationValue)));
-  console.log(test1 + " " + test2);
-  //sourceValue = convertLocation(sourceValue);
-  //destinationValue = convertLocation(destinationValue);
-/*
-  if(sourceValue != null && destinationValue != null)
-  {
-    
-  }
-  else if(sourceValue != null || destinationValue != null)
-  {
-    getEFAStationURL(sourceValue)
-    (sourceValue != null ? sourcevalue : destinationValue)
-  }*/
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const WEATHER_API_KEY = "e5d1be98e9c5ef580a9e3ed6b627664b";
-const delay = 5000;
-let lastTime = Date.now();
-
-//Get Data
-//-----------------------------------------------------------------------------------------------------------------------------------------------------
-function getBNURL(value = 1)//BuergernetzApi -> 1 = Valley, 3 = Mountain
-{
-  return `http://daten.buergernetz.bz.it/services/weather/station?categoryId=${value}&lang=de&format=json`;
 }
 
 function getOWURL(lat, lon)//OpenWeatherApi
@@ -88,79 +14,125 @@ function getOWURL(lat, lon)//OpenWeatherApi
     return `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`;
 }
 
-function getEFAStationURL(location, station)//EfaApi -> Buses from one station
-{
-  return `https://efa.sta.bz.it/apb/XML_DM_REQUEST?&locationServerActive=1&stateless=1&type_dm=any&name_dm=${location}%20${location}%20${station}&mode=direct&outputFormat=json`;
-}
-
-function getEFARouteURL(startLocation, startStation, endLocation, endStation)//EfaApi -> Route from station to other station
-{
-  return `https://efa.sta.bz.it/apb/XML_TRIP_REQUEST2?locationServerActive=1&stateless=%201&type_origin=any&name_origin=${startLocation},%20D${startStation}&type_destination=any&name_destination=${endLocation},%20${endStation}&itdTripDateTimeDepArr=dep&itdTime=0800&itdDate=20220209&calcNumberOfTrips=5&maxChanges=9&routeType=LEASTTIME&useProxFootSearch=1&coordOutputFormatTail=4&outputFormat=JSON&coordOutputFormat=WGS84[DD.DDDDD]`;
-}
-
 function getStopFinderURL(location)
 {
   return `https://efa.sta.bz.it/apb/XML_STOPFINDER_REQUEST?locationServerActive=1&outputFormat=JSON&type_sf=any&name_sf=${location}`;
 }
 
-async function getDataFromURL(url)//make request
+function locPos(name, station, temp, icon, windSpeed, pressure, deg)
 {
-  let result = await fetch(url);
-  let answer = null;
-  if(result.ok)
-    answer = await result.json();
-  return answer;
-}
-//-----------------------------------------------------------------------------------------------------------------------------------------------------
-//Get Weather
-//-----------------------------------------------------------------------------------------------------------------------------------------------------
-function weatherLocation(location, temperature, windDirection, windSpeed, windSpeed, humidity, iconCode)//create location object
-{
-  this.location = location;
-  this.temperature = temperature;
-  this.windDirection = windDirection;
-  this.windSpeed = windSpeed;
-  this.humidity = humidity;
-  this.iconCode = iconCode;
+    this.location = name;
+    this.station = station;
+    this.temperature = temp;
+    this.iconCode = icon;
+    this.windSpeed = windSpeed;
+    this.pressure = pressure;
+    this.windDegree = deg;
 }
 
-function getWeatherData(BNData, OWData)//get data for location object
+async function getWeatherData(coords)
 {
-  return new weatherLocation(BNData.name, 
-                             BNData.t + "°C", 
-                             BNData.dd, 
-                             BNData.ff + "km/h",
-                             BNData.rh + "%",
-                             OWData.weather[0].description,
-                             OWData.weather[0].icon);
+    return await getDataFromURL(getOWURL(coords[0], coords[1]));
 }
 
-function getLocation(data, location)//search location in data
+async function createLocPos(name, coords)
 {
-  return data.rows.find(x => {return x.name.toLowerCase() === location});
+    let weatherData = await getDataFromURL(getOWURL(coords[0], coords[1]));
+    let location = name.split(", ");
+    return new locPos(location[0], location[1], (weatherData.main.temp - 273.15).toFixed(1), weatherData.weather[0].icon, (weatherData.wind.speed * 3.6).toFixed(1), weatherData.main.pressure, weatherData.wind.deg);
 }
 
-async function getWeather(location)//concat data from OWApi and BNApi
+function utmToLatLng(input, zone = 32)
 {
-  let BNData = getLocation(await getDataFromURL(getBNURL()), location.toLowerCase());
-  return BNData!=null?getWeatherData(BNData, await getDataFromURL(getOWURL(BNData.latitude, BNData.longitude))):BNData;
+    easting = parseFloat(input[0]);
+    northing = 5500000 - parseFloat(input[1]);
+
+    a = 6378137;
+    e = 0.081819191;
+    e1sq = 0.006739497;
+    k0 = 0.9996;
+
+    arc = northing / k0;
+    mu = arc / (a * (1 - Math.pow(e, 2) / 4.0 - 3 * Math.pow(e, 4) / 64.0 - 5 * Math.pow(e, 6) / 256.0));
+    
+    ei = (1 - Math.pow((1 - e * e), (1 / 2.0))) / (1 + Math.pow((1 - e * e), (1 / 2.0)));
+    
+    ca = 3 * ei / 2 - 27 * Math.pow(ei, 3) / 32.0;
+    
+    cb = 21 * Math.pow(ei, 2) / 16 - 55 * Math.pow(ei, 4) / 32;
+    cc = 151 * Math.pow(ei, 3) / 96;
+    cd = 1097 * Math.pow(ei, 4) / 512;
+    phi1 = mu + ca * Math.sin(2 * mu) + cb * Math.sin(4 * mu) + cc * Math.sin(6 * mu) + cd * Math.sin(8 * mu);
+
+    n0 = a / Math.pow((1 - Math.pow((e * Math.sin(phi1)), 2)), (1 / 2.0));
+
+    r0 = a * (1 - e * e) / Math.pow((1 - Math.pow((e * Math.sin(phi1)), 2)), (3 / 2.0));
+    fact1 = n0 * Math.tan(phi1) / r0;
+    
+    _a1 = 500000 - easting;
+    dd0 = _a1 / (n0 * k0);
+    fact2 = dd0 * dd0 / 2;
+   
+    t0 = Math.pow(Math.tan(phi1), 2);
+    Q0 = e1sq * Math.pow(Math.cos(phi1), 2);
+    fact3 = (5 + 3 * t0 + 10 * Q0 - 4 * Q0 * Q0 - 9 * e1sq) * Math.pow(dd0, 4) / 24;
+    
+    fact4 = (61 + 90 * t0 + 298 * Q0 + 45 * t0 * t0 - 252 * e1sq - 3 * Q0 * Q0) * Math.pow(dd0, 6) / 720;
+    
+    lof1 = _a1 / (n0 * k0);
+    lof2 = (1 + 2 * t0 + Q0) * Math.pow(dd0, 3) / 6.0;
+    lof3 = (5 - 2 * Q0 + 28 * t0 - 3 * Math.pow(Q0, 2) + 8 * e1sq + 24 * Math.pow(t0, 2)) * Math.pow(dd0, 5) / 120;
+    _a2 = (lof1 - lof2 + lof3) / Math.cos(phi1);
+
+    _a3 = _a2 * 180 / Math.PI;
+
+    latitude = 180 * (phi1 - fact1 * (fact2 + fact3 + fact4)) / Math.PI;
+
+    longitude = ((zone > 0) && (6 * zone - 183.0) || 3.0) - _a3;
+
+    return [latitude, longitude];
 }
-//-----------------------------------------------------------------------------------------------------------------------------------------------------
-//Get buses from one station
-//-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+async function extractLocation(locations)
+{
+    locationsArray = [];
+    if(locations.length)
+        for(let count = 0; count < locations.length; count++)
+            locationsArray.push(await createLocPos(locations[count].name, utmToLatLng(locations[count].ref.coords.split(","))));
+          
+    else
+        locationsArray.push(await createLocPos(locations.name, utmToLatLng(locations.ref.coords.split(","))));
+
+    return locationsArray;
+}
+
+async function getStationProposals(location, limit = 1)
+{
+    let locations = await getDataFromURL(getStopFinderURL(location));
+    if(locations.stopFinder.points != null)
+        return locations.stopFinder.points.length > 1 ? await extractLocation(locations.stopFinder.points.slice(0, limit)) : await extractLocation(locations.stopFinder.points.point);
+    else
+        return null;
+}
+//---------------------------------------------------------
+function getEFAStationURL(location, station)//EfaApi -> Buses from one station
+{
+    return `https://efa.sta.bz.it/apb/XML_DM_REQUEST?&locationServerActive=1&stateless=1&type_dm=any&name_dm=${location}%20${location}%20${station}&mode=direct&outputFormat=json`;
+}
+
 function mot(transportationNumber, transportationType, endLocation, startTime) //modeOfTransportation object
 {
-  this.transportationNumber = transportationNumber;
-  this.transportationType = transportationType;
-  this.endLocation = endLocation;
-  this.startTime = startTime;
+    this.transportationNumber = transportationNumber;
+    this.transportationType = transportationType;
+    this.endLocation = endLocation;
+    this.startTime = startTime;
 }
 
 function getmotFromStation(data)//make object for each mot
 {
-  let modeOfTransport = [];
-  console.log(data);
-  if(data.servingLine != null)
+    let modeOfTransport = [];
+    console.log(data);
+    if(data.servingLine != null)
     data.departureList.slice(0, 10).forEach(x => 
     {
       modeOfTransport.push(new mot(x.servingLine.number, 
@@ -169,11 +141,14 @@ function getmotFromStation(data)//make object for each mot
                                   `${x.dateTime.hour}:${x.dateTime.minute}`));
     });
 
-  return modeOfTransport;
+    return modeOfTransport;
 }
-//-----------------------------------------------------------------------------------------------------------------------------------------------------
-//Get Route from station to other station
-//-----------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------
+function getEFARouteURL(startLocation, startStation, endLocation, endStation)//EfaApi -> Route from station to other station
+{
+  return `https://efa.sta.bz.it/apb/XML_TRIP_REQUEST2?locationServerActive=1&stateless=%201&type_origin=any&name_origin=${startLocation},%20D${startStation}&type_destination=any&name_destination=${endLocation},%20${endStation}&itdTripDateTimeDepArr=dep&itdTime=0800&itdDate=20220209&calcNumberOfTrips=5&maxChanges=9&routeType=LEASTTIME&useProxFootSearch=1&coordOutputFormatTail=4&outputFormat=JSON&coordOutputFormat=WGS84[DD.DDDDD]`;
+}
+
 function station(transportationNumber, transportationType, startLocation, startTime, endLocation, endTime, duration)//create a station object
 {
   this.transportationNumber = transportationNumber;
@@ -191,7 +166,7 @@ function getStations(data)//fill and put all station objects into array
 
   data.legs.forEach(x =>
   {
-    stations.push(new station(x.mode.number, 
+    stations.push(new station((x.mode.number == '' ? "Zu Fuss" : x.mode.number), 
                               x.mode.product, 
                               x.points[0].name, 
                               x.points[0].dateTime.time, 
@@ -206,10 +181,7 @@ function getStations(data)//fill and put all station objects into array
 function getTransportationRoute(data)//make object for every single route
 {
   let routes = [];
-<<<<<<< HEAD
-=======
 
->>>>>>> 80a6dcb3baad4e4b09a488fff981b9d39f8fa41e
   if(data.trips != null)
     data.trips.forEach(x => 
     {
@@ -218,12 +190,7 @@ function getTransportationRoute(data)//make object for every single route
 
   return routes;
 }
-//-----------------------------------------------------------------------------------------------------------------------------------------------------
-//Get Stations from locations
-//-----------------------------------------------------------------------------------------------------------------------------------------------------
-
-//-----------------------------------------------------------------------------------------------------------------------------------------------------
-
+//--------------------------------------------------
 
 async function getProposals(input)
 {
@@ -238,64 +205,29 @@ async function getProposals(input)
   return proposals;
 }
 
-async function searchRoute(location1, location2)
+
+async function enter(value1, value2)
 {
-<<<<<<< HEAD
-  let testlocation = "Brixen - Vahrn";
-  let testlocation1 = "Brixen";
-  let teststation1 = "Dantestraße";
-  let testlocation2 = "Klausen";
-  let teststation2 = "Bahnhof";/*
-  let testlocation = "asdf";
-=======
-  console.log(location1 + " " + location2);
+    let output;
 
-  let testlocation = "Brixen Bahnhof";
-  let testlocation1 = "Brixen";
-  let teststation1 = "Dantestraße";
-  let testlocation2 = "Klausen";
-  let teststation2 = "Bahnhof";
-  /*let testlocation = "asdf";
->>>>>>> 80a6dcb3baad4e4b09a488fff981b9d39f8fa41e
-  let testlocation1 = "ddddddddd";
-  let teststation1 = "ffffffff";
-  let testlocation2 = "Boazen";
-  let teststation2 = "Ortler";*/
-<<<<<<< HEAD
-  //var clone=document.getElementById("routeDiv").cloneNode();
-  let testData1 = getTransportationRoute(await getDataFromURL(getEFARouteURL(testlocation1, teststation1, testlocation2, teststation2)));
-  let testData2 = getmotFromStation(await getDataFromURL(getEFAStationURL(testlocation1, teststation1)));
-=======
+    if(value1 != null && value2 != null)
+    {
+        value1 = await getStationProposals(value1);
+        value2 = await getStationProposals(value2);
+        console.log(value1);
+        console.log(value2);
+        displayroute(getTransportationRoute(await getDataFromURL(getEFARouteURL(value1[0].location, value1[0].station, value2[0].location, value2[0].station))).slice(0,6));
+    }
+    else if(value1 != null)
+    {
+        value1 = await getStationProposals(value1);
+        output = getmotFromStation(await getDataFromURL(getEFAStationURL(value1[0].location, value1[0].station)));
+    }
 
-  //let testData1 = getTransportationRoute(await getDataFromURL(getEFARouteURL(testlocation1, teststation1, testlocation2, teststation2)));
-  //let testData2 = getmotFromStation(await getDataFromURL(getEFAStationURL(testlocation1, teststation1)));
->>>>>>> 80a6dcb3baad4e4b09a488fff981b9d39f8fa41e
-  let testData3 = await getWeather(testlocation);
-  /*console.log(testData1);
-  console.log(testData2);
-  console.log(testData3);*/
-  //let asdf = stopFinder(await getDataFromURL(getStopFinderURL("Bx")));
-<<<<<<< HEAD
-  console.log(testData1);
-  displayroute(testData1);
-  displayweather(testData3);
-=======
-  //console.log(testData1);
->>>>>>> 80a6dcb3baad4e4b09a488fff981b9d39f8fa41e
-  //console.log(testData3.iconCode);
-  console.log(testData3);
-
-  /*let BNData = getLocation(await getDataFromURL(getBNURL()), location.toLowerCase());
-  let data = getWeatherData(BNData, await getDataFromURL(getOpenWeatherURL(BNData.latitude, BNData.longitude)));
-  console.log(data);
-  console.log(await getDataFromURL(getEFAStationURL(location1, station1)));
-  console.log(await getDataFromURL(getEfaRouteURL(location1, station1, location2, station2)));*/
 }
 
-<<<<<<< HEAD
-
 function displayroute(data){
-
+  console.log(data);
   for(let i=0;i<data.length;i++){
     document.getElementsByClassName("names")[i].innerHTML='';
     document.getElementsByClassName("sep")[i].innerHTML=''
@@ -311,8 +243,10 @@ function displayroute(data){
   document.getElementById("routeDiv").style.display="block";
   console.log(data[0].stations);
   for(let i=0;i<data.length;i++){
-    
+
       currentDiv=document.getElementById("route"+i);
+      currentDiv.style.display="block";
+      document.getElementsByClassName("smbtn")[i].style.display="block";
       currentStation=data[i].stations;
       currentDiv.getElementsByClassName("sep")[0].textContent=data[i].totalDuration+"h";
       currentDiv.getElementsByClassName("totp")[0].textContent=currentStation[0].startTime+" - "+currentStation[currentStation.length-1].endTime;
@@ -337,6 +271,9 @@ function displayroute(data){
       
         if(currentStation[j].transportationType=='Citybus'){
           icon.innerHTML='<i class="fa-solid fa-bus" aria-hidden="true"></i>';
+        }
+        else if(currentStation[j].transportationType=='Fussweg'){
+          icon.innerHTML='<i class="fa-solid fa-person-walking" aria-hidden="true"></i>';
         }
         else if(currentStation[j].transportationType=='Regionalzug'){
           icon.innerHTML='<i class="fa-solid fa-train" aria-hidden="true"></i>';
@@ -372,7 +309,6 @@ function displayroute(data){
         currentDiv.getElementsByClassName("sec5")[0].getElementsByClassName("stime")[0].appendChild(stime);
 
       }
-
   }
   addListeners(data.length);
 }
@@ -391,11 +327,6 @@ function addListeners(length){
       }
     };
   }
-}
-function resetDiv(){
-
-  
-
 }
 
 function displayweather(data){
@@ -428,184 +359,3 @@ function insertCells(table, data){
   row3.insertCell().innerHTML=data.windDirection;
   row4.insertCell().innerHTML=data.windSpeed;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*async function getWeatherFromBN(url)
-{
-  return fetch(url)
-    .then((response) => response.json())
-    .then((responseJSON) => {return responseJSON});
-}
-
-//OpenWeather API
-async function getWeatherFromOpenWeather(lat, lon)
-{
-  return fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`)
-          .then((response) => response.json())
-          .then((responseJSON) => {return responseJSON});
-}
-
-//Buergernetz Valley
-async function getweatherFromBuergernetzValley()
-{
-  return fetch(`http://daten.buergernetz.bz.it/services/weather/station?categoryId=1&lang=de&format=json`)
-    .then((response) => response.json())
-    .then((responseJSON) => {return responseJSON});
-}
-
-//async function get
-/*async caller() {
-    const json = await this.getJSON();  // command waits until completion
-    console.log(json.hello);            // hello is now available
-}
-
-/*function searchLocation(input, location)
-{
-    console.log(input[0]);
-  //let matches  = input.filter(rows => rows['name'] === location);
-  //const matches = data.filter(item => item['Last Name'] === "Smith" && item.Age === "36")
-    //console.log(matches);
-    /*let test = input.rows;
-    console.log(test.length);
-    //console.log(Object.keys(input.rows)).length
-    //console.log(input.rows.length);
-  //Object.keys(data.shareInfo[i]).length
-    /*for(let count = 0; count < Object.keys(input.rows[count]).length; count++)
-        if(input.rows[count].name.toLowerCase() == location.toLowerCase())
-          return input.rows[count];
-    return "test";
-}
-
-async function getWeather(location)
-{
-    //let bnv = [];
-    let bnv = getWeatherFromBN(BNV_URL);
-    /*console.log(typeof(bnv));
-    console.log(bnv);
-    console.log(bnv.PromiseResult[0]);
-    //console.log(Object.keys(bnv.rows).length);
-    //console.log(JSON.parse(bnv));
-    /*console.log(searchLocation(bnv, location))
-    console.log(JSON.stringify(bnv, null, 2));
-    /*let opa = getWeatherFromOpenWeather(bnv.latitu)
-    console.log(bnv);*/
-    /*let test = await this.getWeather("46.8850", "11.4386");
-    console.log(test);
-}
-
-var datasetBuerger = ""
-var datasetWeatherApi = ""
-
-/*function search()
-{
-    console.log("test");
-    console.log(getWeatherFromBN(BNV_URL, "Langtaufers Grub"));
-    //getWeather("Langtaufers Grub");
-    //console.log("test");
-    //console.log(datasetBuerger.rows[0]);
-    //console.log("test");
-    //console.log(await getWeather("46.8850", "11.4386"));
-}
-/*
-fetch('http://daten.buergernetz.bz.it/services/weather/station?categoryId=1&lang=de&format=json')
-  .then(response => response.json())
-  .then(data => 
-    datasetBuerger = data
-    );
-
-fetch('https://api.openweathermap.org/data/2.5/weather?lat=46,8850&lon=11,4386&appid=e5d1be98e9c5ef580a9e3ed6b627664b')
-    .then(response => response.json())
-    .then(data => datasetWeatherApi = data);
-
-
-//Weather Api
-//Api Key = e5d1be98e9c5ef580a9e3ed6b627664b
-//api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
-//api.openweathermap.org/data/2.5/weather?lat=46.8850&lon=11.4386&appid=e5d1be98e9c5ef580a9e3ed6b627664b
-//https://api.openweathermap.org/data/2.5/weather?lat=46,8850&lon=11,4386&appid=e5d1be98e9c5ef580a9e3ed6b627664b
-/*Get example:
-coord": {
-    "lon": 11.4386,
-    "lat": 46.885
-  },
-  "weather": [
-    {
-      "id": 803,
-      "main": "Clouds",
-      "description": "broken clouds",
-      "icon": "04d"
-    }
-  ],
-  "base": "stations",
-  "main": {
-    "temp": 276.89,
-    "feels_like": 276.89,
-    "temp_min": 273.1,
-    "temp_max": 278.93,
-    "pressure": 1022,
-    "humidity": 87,
-    "sea_level": 1022,
-    "grnd_level": 912
-  },
-  "visibility": 10000,
-  "wind": {
-    "speed": 0.12,
-    "deg": 46,
-    "gust": 0.76
-  },
-  "clouds": {
-    "all": 54
-  },
-  "dt": 1643881700,
-  "sys": {
-    "type": 2,
-    "id": 2005542,
-    "country": "IT",
-    "sunrise": 1643870201,
-    "sunset": 1643905162
-  },
-  "timezone": 3600,
-  "id": 3164065,
-  "name": "Sterzing",
-  "cod": 200,
-  */
-
-  //Api mit parameter(wetter)
-
-
-
-//Fahrplan Api https://efa.sta.bz.it/apb/XML_DM_REQUEST?&locationServerActive=1&stateless=1&type_dm=any&name_dm=Brixen%20Brixen%20Dantestra%C3%9Fe&mode=direct&outputFormat=json
-//10.10.30.15*/
-=======
-/*var timer;
-function chk_me(){
-   clearTimeout(timer);
-   timer=setTimeout(function validate(){...},1000);
-}*/
->>>>>>> 80a6dcb3baad4e4b09a488fff981b9d39f8fa41e
