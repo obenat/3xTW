@@ -39,7 +39,7 @@ async function createLocPos(name, coords)
 {
     let weatherData = await getDataFromURL(getOWURL(coords[0], coords[1]));
     let location = name.split(", ");
-    return new locPos(location[0], location[1], (weatherData.main.temp - 273.15).toFixed(1), weatherData.weather[0].icon, (weatherData.wind.speed * 3.6).toFixed(1), weatherData.main.pressure, weatherData.wind.deg);
+    return new locPos(location[0], location[1], (weatherData.main.temp - 273.15).toFixed(1) + "°C", weatherData.weather[0].icon, (weatherData.wind.speed * 3.6).toFixed(1) + "km/h", weatherData.main.pressure + "hPa", weatherData.wind.deg + "°");
 }
 
 function utmToLatLng(input, zone = 32)
@@ -216,6 +216,7 @@ async function enter(value1, value2)
         value2 = await getStationProposals(value2);
         console.log(value1);
         console.log(value2);
+        displayweather(value1, value2);
         displayroute(getTransportationRoute(await getDataFromURL(getEFARouteURL(value1[0].location, value1[0].station, value2[0].location, value2[0].station))).slice(0,6));
     }
     else if(value1 != null)
@@ -329,7 +330,7 @@ function addListeners(length){
   }
 }
 
-function displayweather(data){
+function displayweather(value1, value2 = null){
   document.getElementById("demoA").textContent='';
   document.getElementById("demoB").textContent='';
   document.getElementById("demoA").style.display="hidden";
@@ -337,9 +338,18 @@ function displayweather(data){
   document.getElementById("demoA").appendChild(table);
   var table2 = document.createElement("table"), row, cellA, cellB;
   document.getElementById("demoB").appendChild(table2);
-  insertCells(table, data);
-  insertCells(table2, data);
+  insertCells(table, value1[0]);
+  if(value2 != null)
+    insertCells(table2, value2[0]);
 }
+/*
+iconCode: "01n"
+location: "Glurns"
+pressure: 1033
+station: "Rathaus"
+temperature: "-5.9"
+windDegree: 175
+windSpeed: "5.5"*/
 
 function insertCells(table, data){
   rowheader=table.insertRow();
@@ -353,9 +363,9 @@ function insertCells(table, data){
   rowheader.insertCell().innerHTML=data.location;
   rowheader.insertCell().appendChild(img);
   row.insertCell().innerHTML='Temperatur';
-  row3.insertCell().innerHTML='Windrichtung';
+  row3.insertCell().innerHTML='Windgrad';
   row4.insertCell().innerHTML='Windgeschwindigkeit';
   row.insertCell().innerHTML=data.temperature;
-  row3.insertCell().innerHTML=data.windDirection;
+  row3.insertCell().innerHTML=data.windDegree;
   row4.insertCell().innerHTML=data.windSpeed;
 }
