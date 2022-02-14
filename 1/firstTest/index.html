@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="./index.css">
     
-    <script defer src="./script.js"></script>
+    <script defer src="./script.js"> </script>
     <title>Document</title>
 </head>
 <body>
@@ -20,14 +20,15 @@
     <section class="banner"></section>
     <main>
 
+        <form autocomplete="off">
+            <div id="simpleDiv" class="myPos">
 
-        <div id="simpleDiv" class="myPos">
-
-            <input type="text" class="form-control" id="sName" name="lName" placeholder="START"><br><br>
-            <input type="text" class="form-control" id ="dName" name="dName" placeholder="ZIEL"><br><br>
-            <input type="button" class="btn btn-primary entbtn" value="ENTER" onclick="enter(sName.value, dName.value)">
-
-        </div>
+                <input type="text" class="form-control input" id="sName" name="lName" placeholder="START"><br><br>
+                <input type="text" class="form-control input" id ="dName" name="dName" placeholder="ZIEL"><br><br>
+                <input type="button" class="btn btn-primary entbtn" value="ENTER" onclick="enter(sName.value, dName.value)">
+            </div>
+            <ul class="list"></ul>
+        </form>
         <div id="weatherloc">
                 <div id="demoA">         
                 </div>
@@ -271,7 +272,6 @@
             </div>
 
         </div>
-          
     </main>
 </body>
 </html>

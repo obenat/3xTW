@@ -1,4 +1,7 @@
 const WEATHER_API_KEY = "e5d1be98e9c5ef580a9e3ed6b627664b";
+var lastTime = 0;
+var delay = 4000;
+var input = document.getElementById("sName");
 
 async function getDataFromURL(url)//make request
 {
@@ -191,17 +194,22 @@ function getTransportationRoute(data)//make object for every single route
 }
 //--------------------------------------------------
 
-async function getProposals(input)
+function getSuggestName(data)
 {
-  let currentTime = Date.now();
-  let proposals = null;
-  if(input.length > 3 && currentTime > lastTime + delay)
-  {
-    lastTime = currentTime;
-    proposals = stopFinder(await getDataFromURL(getStopFinderURL(input))).slice(0, 5);
-  }
+  let output = [];
+  if(data.stopFinder.points.length)
+    data.stopFinder.points.forEach(x => output.push(x.name));
+  
+  return output;
+}
 
-  return proposals;
+async function getSuggestions(input)
+{
+  let suggestions = null;
+  if(input.length > 3)
+    suggestions = getSuggestName(await getDataFromURL(getStopFinderURL(input))).slice(0, 5);
+
+  return suggestions;
 }
 
 
@@ -223,6 +231,10 @@ async function enter(value1, value2)
         value1 = await getStationProposals(value1);
         output = getmotFromStation(await getDataFromURL(getEFAStationURL(value1[0].location, value1[0].station)));
         console.log(output);
+    }
+    else{
+      let test = getSuggestions(value2);
+    console.log(test);
     }
 
 }
@@ -342,14 +354,6 @@ function displayweather(value1, value2 = null){
   if(value2 != null)
     insertCells(table2, value2[0]);
 }
-/*
-iconCode: "01n"
-location: "Glurns"
-pressure: 1033
-station: "Rathaus"
-temperature: "-5.9"
-windDegree: 175
-windSpeed: "5.5"*/
 
 function insertCells(table, data){
   rowheader=table.insertRow();
@@ -368,4 +372,37 @@ function insertCells(table, data){
   row.insertCell().innerHTML=data.temperature;
   row3.insertCell().innerHTML=data.windDegree;
   row4.insertCell().innerHTML=data.windSpeed;
+}
+
+input.addEventListener("keyup", async (e) => {
+  let currentTime = Date.now();
+  //if(currentTime > lastTime + delay)
+    lastTime = currentTime;
+    removeElements();
+    let suggestions = await getSuggestions(input.value)
+    console.log(suggestions);
+    for(let count = 0; count < suggestions.length; count++)
+    {
+      let listItem = document.createElement("li");
+      listItem.classList.add("list-items");
+      listItem.style.cursor = "pointer";
+      listItem.setAttribute("onclick", "displayNames('" + suggestions[count] + "')");
+      let word = "<b>" + suggestions[count].substr(0, input.value.length) + "</b>";
+      word += suggestions[count].substr(input.value.length);
+      listItem.innerHTML = word;
+      document.querySelector(".list").appendChild(listItem);
+    }
+});
+
+function displayNames(value)
+{
+  input.value = value;
+  removeElements();
+}
+function removeElements()
+{
+  let items = document.querySelectorAll(".list-items");
+  items.forEach((item) => {
+    item.remove();
+  });
 }
