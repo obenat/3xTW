@@ -4,6 +4,12 @@ var delay = 4000;
 var input1 = document.getElementById("sName");
 var input2 = document.getElementById("dName");
 
+/**
+ * In dieser funktion wird ein fetch mit einer url die Übergeben wird ausgeführt,
+ * dabei bekommt man den response einer Api, dies wird dann zurückgegeben
+ * @param {*} url, url der jeweiligen Api 
+ * @returns gibt die erhaltenen Daten zurück
+ */
 async function getDataFromURL(url)//make request
 {
   let result = await fetch(url);
@@ -13,16 +19,35 @@ async function getDataFromURL(url)//make request
   return answer;
 }
 
-function getOWURL(lat, lon)//OpenWeatherApi
+/**
+ * @param {*} lat, breitengrad einer Koordinate
+ * @param {*} lon, längengrad einer Koordinate
+ * @returns gibt den Link mit den benötigten Parameter der OpenWeatherApi zurück
+ */
+function getOWURL(lat, lon)
 {
     return `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`;
 }
 
+/**
+ * @param {*} location, ein Ort/teile davon(string)
+ * @returns gibt den Link mit dem benötigten Paramter der StopFinderApi zurück
+ */
 function getStopFinderURL(location)
 {
   return `https://efa.sta.bz.it/apb/XML_STOPFINDER_REQUEST?locationServerActive=1&outputFormat=JSON&type_sf=any&name_sf=${location}`;
 }
 
+/**
+ * Erstellt ein Objekt, eines Ortes, mit den benötigten Informationen 
+ * @param {*} name, name des Ortes
+ * @param {*} station, station die sich im Ort befindet
+ * @param {*} temp, temperatur(°C) im Ort
+ * @param {*} icon, icon für die Darstellung des Wetters im Ort
+ * @param {*} windSpeed, Windgeschwindigkeit(km/h) im Ort
+ * @param {*} pressure, Luftdurck(hPa) im Ort
+ * @param {*} deg, Windgrad(°) um die Windrichtung zu bestimmen
+ */
 function locPos(name, station, temp, icon, windSpeed, pressure, deg)
 {
     this.location = name;
@@ -34,11 +59,13 @@ function locPos(name, station, temp, icon, windSpeed, pressure, deg)
     this.windDegree = deg;
 }
 
-async function getWeatherData(coords)
-{
-    return await getDataFromURL(getOWURL(coords[0], coords[1]));
-}
-
+/**
+ * Erstellt ein Objekt für einen Ort.
+ * Es werden die benötigten Daten herausgesucht
+ * @param {*} name, name des Ortes
+ * @param {*} coords, Koordinaten des Ortes
+ * @returns das erstellt Objekt wird zurückgegeben
+ */
 async function createLocPos(name, coords)
 {
     let weatherData = await getDataFromURL(getOWURL(coords[0], coords[1]));
@@ -46,6 +73,14 @@ async function createLocPos(name, coords)
     return new locPos(location[0], location[1], (weatherData.main.temp - 273.15).toFixed(1) + "°C", weatherData.weather[0].icon, (weatherData.wind.speed * 3.6).toFixed(1) + "km/h", weatherData.main.pressure + "hPa", weatherData.wind.deg + "°");
 }
 
+/**
+ * Mit Hilfe dieser Funktion werden UTM Koordinaten zu Längen- und Breitengrade umgewandelt
+ * Diese Funktion wurde nicht von uns geschrieben, der Ersteller dieser Funktion ist @Staale
+ * https://stackoverflow.com/questions/343865/how-to-convert-from-utm-to-latlng-in-python-or-javascript
+ * @param {*} input, eingabe der Koordinaten, als array
+ * @param {*} zone, zone in der sich unsere Umgebung befindet
+ * @returns Längen- und Breitengrad der UTM Koordinaten in Form eines Arrays
+ */
 function utmToLatLng(input, zone = 32)
 {
     easting = parseFloat(input[0]);
@@ -97,6 +132,11 @@ function utmToLatLng(input, zone = 32)
     return [latitude, longitude];
 }
 
+/**
+ * Alle erstellten Orte werden in ein Array gegeben und zurückgegeben
+ * @param {*} locations, alle gefundenen Haltestellen
+ * @returns alle gefundenen Haltestellen mit den benötigten Informationen
+ */
 async function extractLocation(locations)
 {
     locationsArray = [];
@@ -110,6 +150,11 @@ async function extractLocation(locations)
     return locationsArray;
 }
 
+/**
+ * @param {*} location, Ort der gefunden werden soll
+ * @param {*} limit, wie viele Orte maximal zurückgegeben werden können
+ * @returns alle gefundenen Orte
+ */
 async function getStationProposals(location, limit = 1)
 {
     let locations = await getDataFromURL(getStopFinderURL(location));
@@ -118,12 +163,24 @@ async function getStationProposals(location, limit = 1)
     else
         return null;
 }
-//---------------------------------------------------------
+
+/**
+ * @param {*} location, Name des Ortes
+ * @param {*} station, Name der Station
+ * @returns zusammengebaute URL, um die Buse, die an einer bestimmten Station vorbeikommen, zu erhalten 
+ */
 function getEFAStationURL(location, station)//EfaApi -> Buses from one station
 {
     return `https://efa.sta.bz.it/apb/XML_DM_REQUEST?&locationServerActive=1&stateless=1&type_dm=any&name_dm=${location}%20${location}%20${station}&mode=direct&outputFormat=json`;
 }
 
+/**
+ * Erstellt ein Objekt für Transportationsmittel, mit den jeweiligen Information 
+ * @param {*} transportationNumber, Nummer des Transportmittels
+ * @param {*} transportationType, Art des Transportmittels
+ * @param {*} endLocation, Zielort des Transportmittels
+ * @param {*} startTime, Start an der jeweiligen Haltestelle, des Transportmittels
+ */
 function mot(transportationNumber, transportationType, endLocation, startTime) //modeOfTransportation object
 {
     this.transportationNumber = transportationNumber;
@@ -132,6 +189,11 @@ function mot(transportationNumber, transportationType, endLocation, startTime) /
     this.startTime = startTime;
 }
 
+/**
+ * Erstellt ein Objekt für jedes Transportmittel, dazu werden die benötigten Information herausgesucht
+ * @param {*} data, Daten der Transportmittel
+ * @returns Array, bestehent aus den Transportmitteln
+ */
 function getmotFromStation(data)//make object for each mot
 {
     let modeOfTransport = [];
@@ -146,12 +208,29 @@ function getmotFromStation(data)//make object for each mot
 
     return modeOfTransport;
 }
-//------------------------------------------------------------------------
-function getEFARouteURL(startLocation, startStation, endLocation, endStation)//EfaApi -> Route from station to other station
+
+/**
+ * @param {*} startLocation, Ausgangsort
+ * @param {*} startStation, Station im Ausgangsort
+ * @param {*} endLocation, Zielort
+ * @param {*} endStation, Station im Zielort
+ * @returns die zusammengebaute URL um die Route zwischen zwei Orten zu erhalten
+ */
+function getEFARouteURL(startLocation, startStation, endLocation, endStation)//EfaApi
 {
   return `https://efa.sta.bz.it/apb/XML_TRIP_REQUEST2?locationServerActive=1&stateless=%201&type_origin=any&name_origin=${startLocation},%20D${startStation}&type_destination=any&name_destination=${endLocation},%20${endStation}&itdTripDateTimeDepArr=dep&itdTime=0800&itdDate=20220209&calcNumberOfTrips=5&maxChanges=9&routeType=LEASTTIME&useProxFootSearch=1&coordOutputFormatTail=4&outputFormat=JSON&coordOutputFormat=WGS84[DD.DDDDD]`;
 }
 
+/**
+ * Erstellt ein Objekt, um eine Etappe der Route zu Symbolisieren
+ * @param {*} transportationNumber, Nummer des Transportmittels
+ * @param {*} transportationType, Art des Transportmittels
+ * @param {*} startLocation, Startpunkt des Transportmittels
+ * @param {*} startTime, Startzeit des Transportmittels
+ * @param {*} endLocation, Endpunkt des Transportmittels
+ * @param {*} endTime, Endzeit, bis zur benötigten Haltestelle, des Transportmittels
+ * @param {*} duration, Dauer der Fahrt des Transportmittels
+ */
 function station(transportationNumber, transportationType, startLocation, startTime, endLocation, endTime, duration)//create a station object
 {
   this.transportationNumber = transportationNumber;
@@ -163,7 +242,12 @@ function station(transportationNumber, transportationType, startLocation, startT
   this.duration = duration;
 }
 
-function getStations(data)//fill and put all station objects into array
+/**
+ * Alle Stationen Objekte werden in ein Array gepackt und zurückgegeben
+ * @param {*} data, Daten für die Objekte
+ * @returns Array bestehent aus Station Objekten
+ */
+function getStations(data)
 {
   let stations = [];
 
@@ -181,6 +265,11 @@ function getStations(data)//fill and put all station objects into array
   return stations;
 }
 
+/**
+ * Für jede Route wird ein Objekt erstellt, indem die Dauer und ein Station Objekt enthalten ist
+ * @param {*} data, Daten für die Objekte 
+ * @returns Array, mit den erstellten Objekten
+ */
 function getTransportationRoute(data)//make object for every single route
 {
   let routes = [];
@@ -193,8 +282,13 @@ function getTransportationRoute(data)//make object for every single route
 
   return routes;
 }
-//--------------------------------------------------
 
+/**
+ * Alle gefundenen Daten werden in eine Array verpackt und zurückgegeben.
+ * Nur der Name wird herausgeholt
+ * @param {*} data, Gefundene Daten
+ * @returns Array mit den Daten
+ */
 function getSuggestName(data)
 {
   let output = [];
@@ -204,6 +298,12 @@ function getSuggestName(data)
   return output;
 }
 
+/**
+ * Vorschläge für eine Eingabe werden gesucht
+ * Dabei muss die Eingabe min. 3 Character lang sein
+ * @param {*} input, Eingabe für die, die Vorschläge gefunden werden sollen
+ * @returns Die gefundenen Vorschläge sollen zurückgegeben werden
+ */
 async function getSuggestions(input)
 {
   let suggestions = null;
@@ -213,7 +313,14 @@ async function getSuggestions(input)
   return suggestions;
 }
 
-
+/**
+ * Diese Funktion ist mit dem Button verbunden. Sie ist sozusagen die Schnittstehle zwischen Logik und Grafik.
+ * Hierbei wird unterschieden zwischen einfacher Eingabe und doppelter Eingabe. Bei der einfachen Eingabe wird nur ein Wert übergeben.
+ * Zurück bekommt man die Busse die an der Angegebenen Station halten werden.
+ * Bei der doppelten Eingabe bekommmt man die Route zwischen zwei Stationen.
+ * @param {*} value1, Eingabe des ersten Feldes
+ * @param {*} value2, Eingabe des zweiten Felds
+ */
 async function enter(value1, value2)
 {
     let output;
@@ -240,6 +347,10 @@ async function enter(value1, value2)
 
 }
 
+/**
+ * Zeigt die gesammten Divs der Routen an
+ * @param {*} data, Array von den Routen
+ */
 function displayroute(data){
   console.log(data);
   for(let i=0;i<data.length;i++){
@@ -327,6 +438,10 @@ function displayroute(data){
   addListeners(data.length);
 }
 
+/**
+ * Zu den Buttens der Divs wird ein EventListener hinzugefügt, damit diese auch betätigt werden können
+ * @param {*} length, Anzahl der Buttons
+ */
 function addListeners(length){
   for(let i=0;i<length;i++){
     const targetDiv = document.getElementsByClassName("sminfo")[i];
@@ -343,6 +458,11 @@ function addListeners(length){
   }
 }
 
+/**
+ * Stellt das Wetter in einem order beiden Orten dar
+ * @param {*} value1, Ort1, mit den jeweiligen Informationen für das Wetter
+ * @param {*} value2, Ort2, mit den jeweiligen Informationen für das Wetter
+ */
 function displayweather(value1, value2 = null){
   document.getElementById("demoA").textContent='';
   document.getElementById("demoB").textContent='';
@@ -356,6 +476,11 @@ function displayweather(value1, value2 = null){
     insertCells(table2, value2[0]);
 }
 
+/**
+ * Stellt die Informationen der Orte mit den jeweiligen Bildern dar
+ * @param {*} table, Tabelle für den Ort
+ * @param {*} data, Daten, des Ortes und dem Wetter
+ */
 function insertCells(table, data){
   rowheader=table.insertRow();
   row = table.insertRow();
@@ -375,41 +500,58 @@ function insertCells(table, data){
   row4.insertCell().innerHTML=data.windSpeed;
 }
 
+/**
+ * Erstellt einen EventListener für das obere Eingabefeld
+ */
 input1.addEventListener("keyup", async (e) => 
 {
-  setSuggestions(input1.value);
+  setSuggestions(input1);
 });
 
+/**
+ * Erstellt einen EventListener für das untere Eingabefeld
+ */
 input2.addEventListener("keyup", async (e) => 
 {
-  setSuggestions(input2.value);
+  setSuggestions(input2);
 });
 
-async function setSuggestions(value)
+/**
+ * Erstellt eine Liste mit den gefundenen Vorschlägen, die der Benutzer auwählen kann
+ * @param {*} input, Feld in der die Eingabe erfolgt
+ */
+async function setSuggestions(input)
 {
   let currentTime = Date.now();
   //if(currentTime > lastTime + delay)
     lastTime = currentTime;
     removeElements();
-    let suggestions = await getSuggestions(value)
-    console.log(suggestions);
+    let suggestions = await getSuggestions(input.value)
     for(let count = 0; count < suggestions.length; count++)
     {
       let listItem = document.createElement("li");
       listItem.classList.add("list-items");
       listItem.style.cursor = "pointer";
-      listItem.setAttribute("onclick", "displayNames('" + suggestions[count] + "')");
+      listItem.setAttribute("onclick", "displayNames('" + input + ", " + suggestions[count] + "')");
       listItem.innerHTML = "<b>" + suggestions[count] + "</b>";
       document.querySelector(".list").appendChild(listItem);
     }
 };
 
-function displayNames(value)
+/**
+ * Ausgewählte Daten werden in das Inputfeld geschrieben
+ * @param {*} input, Feld in der die Eingabe erfolgt
+ * @param {*} suggestion, Vorschlag der vom Benutzer ausgewählt wurde
+ */
+function displayNames(input, suggestion)
 {
-  input.value = value;
+  input.value = suggestion;
   removeElements();
 }
 
+/**
+ * Entfernt die Elemente der Liste
+ */
 function removeElements()
 {
   let items = document.querySelectorAll(".list-items");
