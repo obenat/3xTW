@@ -1,7 +1,8 @@
 const WEATHER_API_KEY = "e5d1be98e9c5ef580a9e3ed6b627664b";
 var lastTime = 0;
 var delay = 4000;
-var input = document.getElementById("sName");
+var input1 = document.getElementById("sName");
+var input2 = document.getElementById("dName");
 
 async function getDataFromURL(url)//make request
 {
@@ -374,12 +375,23 @@ function insertCells(table, data){
   row4.insertCell().innerHTML=data.windSpeed;
 }
 
-input.addEventListener("keyup", async (e) => {
+input1.addEventListener("keyup", async (e) => 
+{
+  setSuggestions(input1.value);
+});
+
+input2.addEventListener("keyup", async (e) => 
+{
+  setSuggestions(input2.value);
+});
+
+async function setSuggestions(value)
+{
   let currentTime = Date.now();
   //if(currentTime > lastTime + delay)
     lastTime = currentTime;
     removeElements();
-    let suggestions = await getSuggestions(input.value)
+    let suggestions = await getSuggestions(value)
     console.log(suggestions);
     for(let count = 0; count < suggestions.length; count++)
     {
@@ -387,18 +399,17 @@ input.addEventListener("keyup", async (e) => {
       listItem.classList.add("list-items");
       listItem.style.cursor = "pointer";
       listItem.setAttribute("onclick", "displayNames('" + suggestions[count] + "')");
-      let word = "<b>" + suggestions[count].substr(0, input.value.length) + "</b>";
-      word += suggestions[count].substr(input.value.length);
-      listItem.innerHTML = word;
+      listItem.innerHTML = "<b>" + suggestions[count] + "</b>";
       document.querySelector(".list").appendChild(listItem);
     }
-});
+};
 
 function displayNames(value)
 {
   input.value = value;
   removeElements();
 }
+
 function removeElements()
 {
   let items = document.querySelectorAll(".list-items");
