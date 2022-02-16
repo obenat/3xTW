@@ -1,10 +1,14 @@
-const WEATHER_API_KEY = "e5d1be98e9c5ef580a9e3ed6b627664b";
 
+const WEATHER_API_KEY = "e5d1be98e9c5ef580a9e3ed6b627664b";
+var lastTime = 0;
+var delay = 4000;
+var input1 = document.getElementById("sName");
+var input2 = document.getElementById("dName");
 async function getDataFromURL(url)//make request
 {
   let result = await fetch(url);
   let answer = null;
-  if(result.ok)
+   if(result.ok)
     answer = await result.json();
   return answer;
 }
@@ -39,7 +43,7 @@ async function createLocPos(name, coords)
 {
     let weatherData = await getDataFromURL(getOWURL(coords[0], coords[1]));
     let location = name.split(", ");
-    return new locPos(location[0], location[1], (weatherData.main.temp - 273.15).toFixed(1), weatherData.weather[0].icon, (weatherData.wind.speed * 3.6).toFixed(1), weatherData.main.pressure, weatherData.wind.deg);
+    return new locPos(location[0], location[1], (weatherData.main.temp - 273.15).toFixed(1) + "°C", weatherData.weather[0].icon, (weatherData.wind.speed * 3.6).toFixed(1) + "km/h", weatherData.main.pressure + "hPa", weatherData.wind.deg + "°");
 }
 
 function utmToLatLng(input, zone = 32)
@@ -132,13 +136,13 @@ function getmotFromStation(data)//make object for each mot
 {
     let modeOfTransport = [];
     console.log(data);
-    if(data.servingLine != null)
+    if(data.departureList != null)
     data.departureList.slice(0, 10).forEach(x => 
     {
       modeOfTransport.push(new mot(x.servingLine.number, 
                                   x.servingLine.name, 
                                   x.servingLine.direction, 
-                                  `${x.dateTime.hour}:${x.dateTime.minute}`));
+                                  `${x.dateTime.hour}:${(x.dateTime.minute.length==1? "0" + x.dateTime.minute: x.dateTime.minute)}`));
     });
 
     return modeOfTransport;
@@ -166,7 +170,7 @@ function getStations(data)//fill and put all station objects into array
 
   data.legs.forEach(x =>
   {
-    stations.push(new station(x.mode.number, 
+    stations.push(new station((x.mode.number == '' ? "Zu Fuss" : x.mode.number), 
                               x.mode.product, 
                               x.points[0].name, 
                               x.points[0].dateTime.time, 
@@ -205,31 +209,273 @@ async function getProposals(input)
   return proposals;
 }
 
+function getSuggestName(data)
+{
+  let output = [];
+  if(data.stopFinder.points.length)
+    data.stopFinder.points.forEach(x => output.push(x.name));
+  
+  return output;
+}
+
+async function getSuggestions(input)
+{
+  let suggestions = null;
+  if(input.length > 3)
+    suggestions = getSuggestName(await getDataFromURL(getStopFinderURL(input))).slice(0, 5);
+
+  return suggestions;
+}
 
 async function enter(value1, value2)
 {
     let output;
 
-    if(value1 != null && value2 != null)
+    if(value1 != "" && value2 != "")
     {
+        document.getElementById("oneloc").style.display='none';
         value1 = await getStationProposals(value1);
         value2 = await getStationProposals(value2);
-
-        output = getTransportationRoute(await getDataFromURL(getEFARouteURL(value1[0].location, value1[0].station, value2[0].location, value2[0].station)));
+        console.log(value1);
+        console.log(value2);
+        displayweather(value1, value2);
+        document.getElementById("demoB").style.display='flex';
+        document.getElementById("demoA").style.display='flex';
+        displayroute(getTransportationRoute(await getDataFromURL(getEFARouteURL(value1[0].location, value1[0].station, value2[0].location, value2[0].station))).slice(0,6));
     }
-    else if(value1 != null)
+    else if(value1 != "")
     {
+      document.getElementById("routeDiv").style.display='none';
+      document.getElementById("oneloc").style.display='block';
+        document.getElementById("weatherloc").style.display='none';
+        value1 = await getStationProposals(value1);
         output = getmotFromStation(await getDataFromURL(getEFAStationURL(value1[0].location, value1[0].station)));
+        console.log(output);
+        displaysingle(output);
     }
-    //let test = await getStationProposals(value1);
-    //console.log(test);
-    /*test = ["Albeins (Brixen)", "Grundschule"];
-    let test1 = getmotFromStation(await getDataFromURL(getEFAStationURL(test[0], test[1])));
-    console.log(test1);*/
-    //let test = await getDataFromURL(openWeatherTest("674866.05", "5178159.83"));
-    
-    //let test = utmToLatLng(1, 674866.05, 5178159.83);
-    return output;
+    else{
+      let test = getSuggestions(value2);
+    console.log(test);
+    }
+
 }
 
+function displaysingle(data){
 
+
+
+  for(let i=0; i<data.length;i++){
+
+    var newdiv=document.createElement("div");
+    newdiv.className='sminfo upperu';
+    newdiv.style.display='flex';
+    var u1=document.createElement("div");
+    var u2=document.createElement("div");
+    var u3=document.createElement("div");
+    var u4=document.createElement("div");
+
+    u1.className="udivs";
+    u2.className="udivs";
+    u3.className="udivs";
+    u4.className="udivs";
+
+    u1.textContent=data[i].startTime;
+    u2.textContent=data[i].transportationNumber;
+    u3.textContent=data[i].endLocation;
+    u4.textContent=data[i].transportationType;
+
+    newdiv.appendChild(u1);
+    newdiv.appendChild(u2);
+    newdiv.appendChild(u3);
+    newdiv.appendChild(u4);
+
+    document.getElementById("oneloc").appendChild(newdiv);
+    /*var starttime=document.createElement('div');
+    starttime.textContent=data[i].startTime;
+
+    document.getElementsByClassName("sec1")[0].getElementsByClassName("sloc")[0].appendChild(starttime);
+    document.getElementById("routeDiv").style.display="block";
+    document.getElementById("route"+i).style.display='block';
+    document.getElementByClassName("sminfo")[i].style.display='flex';*/
+  }
+}
+function displayroute(data){
+  document.getElementById("weatherloc").style.display='flex';
+
+  console.log(data);
+  for(let i=0;i<data.length;i++){
+    document.getElementsByClassName("names")[i].innerHTML='';
+    document.getElementsByClassName("sep")[i].innerHTML=''
+    document.getElementsByClassName("totp")[i].innerHTML=''
+    document.getElementsByClassName("transport")[i].innerHTML=''
+    document.getElementsByClassName("sloc")[i].innerHTML=''
+    document.getElementsByClassName("middle")[i].innerHTML=''
+    document.getElementsByClassName("destloc")[i].innerHTML=''
+    document.getElementsByClassName("desttime")[i].innerHTML=''
+    document.getElementsByClassName("stime")[i].innerHTML=''
+
+  }
+  document.getElementById("routeDiv").style.display="block";
+  console.log(data[0].stations);
+  for(let i=0;i<data.length;i++){
+
+      currentDiv=document.getElementById("route"+i);
+      currentDiv.style.display="block";
+      document.getElementsByClassName("seemore")[i].style.display="block";
+      document.getElementsByClassName("smbtn")[i].style.display="block";
+      currentStation=data[i].stations;
+      currentDiv.getElementsByClassName("sep")[0].textContent=data[i].totalDuration+"h";
+      currentDiv.getElementsByClassName("totp")[0].textContent=currentStation[0].startTime+" - "+currentStation[currentStation.length-1].endTime;
+      for(let j=0;j<currentStation.length;j++){
+
+        var trans=document.createElement('div');
+        var trsnumb=document.createElement('div');
+        var icon=document.createElement('div');
+        var arrow=document.createElement('div');
+
+        var stloc=document.createElement('div');
+        var destloc=document.createElement('div');
+        var marrow=document.createElement('div');
+        var desttime=document.createElement('div');
+        var stime=document.createElement('div');
+
+        stloc.className="stloc";
+        destloc.className="destloc";
+        marrow.className="marrow";
+
+        icon.innerHTML='<i class="fa-solid fa-train" aria-hidden="true"></i>';
+      
+        if(currentStation[j].transportationType=='Citybus'){
+          icon.innerHTML='<i class="fa-solid fa-bus" aria-hidden="true"></i>';
+        }
+        else if(currentStation[j].transportationType=='Fussweg'){
+          icon.innerHTML='<i class="fa-solid fa-person-walking" aria-hidden="true"></i>';
+        }
+        else if(currentStation[j].transportationType=='Regionalzug'){
+          icon.innerHTML='<i class="fa-solid fa-train" aria-hidden="true"></i>';
+        }
+        else if(currentStation[j].transportationType=='Bus'){
+          icon.innerHTML='<i class="fa-solid fa-bus-simple" aria-hidden="true"></i>';
+        }
+        trsnumb.className="trsnumb1";
+        icon.className="trsnumb2";
+        trans.className="trsnumb";
+        trsnumb.textContent=currentStation[j].transportationNumber;
+        trans.appendChild(trsnumb);
+        trans.appendChild(icon);
+        
+        arrow.innerHTML='<i class="fa-solid fa-angle-right"></i>';
+        arrow.style.color='#a1303f';
+        arrow.className='arrow';
+        currentDiv.getElementsByClassName("names")[0].appendChild(trans);
+        if(j!=currentStation.length-1)
+        currentDiv.getElementsByClassName("names")[0].appendChild(arrow);
+
+        stloc.textContent=currentStation[j].startLocation;
+        destloc.textContent=currentStation[j].endLocation;
+        marrow.textContent=currentStation[j].transportationNumber;
+        desttime.textContent=currentStation[j].endTime;
+        stime.textContent=currentStation[j].startTime;
+        console.log(i)
+
+        currentDiv.getElementsByClassName("sec1")[0].getElementsByClassName("sloc")[0].appendChild(stloc);
+        currentDiv.getElementsByClassName("sec3")[0].getElementsByClassName("destloc")[0].appendChild(destloc);
+        currentDiv.getElementsByClassName("sec2")[0].getElementsByClassName("middle")[0].appendChild(marrow);
+        currentDiv.getElementsByClassName("sec4")[0].getElementsByClassName("desttime")[0].appendChild(desttime);
+        currentDiv.getElementsByClassName("sec5")[0].getElementsByClassName("stime")[0].appendChild(stime);
+
+      }
+  }
+  addListeners(data.length);
+}
+
+function addListeners(length){
+  for(let i=0;i<length;i++){
+    const targetDiv = document.getElementsByClassName("sminfo")[i];
+    btn=document.getElementsByClassName("smbtn")[i];
+    btn.onclick=function(){
+      if (targetDiv.style.display !== "none") {
+        targetDiv.style.display = "none";
+        document.getElementsByClassName("sm")[i].className='fa-solid fa-angle-down sm';
+      } else {
+        targetDiv.style.display = "flex";
+        document.getElementsByClassName("sm")[i].className='fa-solid fa-angle-up sm';
+      }
+    };
+  }
+}
+
+function displayweather(value1, value2 = null){
+  document.getElementById("demoA").textContent='';
+  document.getElementById("demoB").textContent='';
+  document.getElementById("demoA").style.display="hidden";
+  var table = document.createElement("table"), row, cellA, cellB;
+  document.getElementById("demoA").appendChild(table);
+  var table2 = document.createElement("table"), row, cellA, cellB;
+  document.getElementById("demoB").appendChild(table2);
+  insertCells(table, value1[0]);
+  if(value2 != null)
+    insertCells(table2, value2[0]);
+}
+
+function insertCells(table, data){
+  rowheader=table.insertRow();
+  row = table.insertRow();
+  row2 = table.insertRow();
+  row3 = table.insertRow();
+  row4 = table.insertRow();
+  var iconurl =  'http://openweathermap.org/img/wn/'+data.iconCode+'.png';
+  var img = document.createElement('img');
+  img.src = iconurl;
+  rowheader.insertCell().innerHTML=data.location;
+  rowheader.insertCell().appendChild(img);
+  row.insertCell().innerHTML='Temperatur';
+  row3.insertCell().innerHTML='Windgrad';
+  row4.insertCell().innerHTML='Windgeschwindigkeit';
+  row.insertCell().innerHTML=data.temperature;
+  row3.insertCell().innerHTML=data.windDegree;
+  row4.insertCell().innerHTML=data.windSpeed;
+}
+/*
+input1.addEventListener("keyup", async (e) => 
+{
+  setSuggestions(input1.value);
+});
+
+input2.addEventListener("keyup", async (e) => 
+{
+  setSuggestions(input2.value);
+});
+
+async function setSuggestions(value)
+{
+  let currentTime = Date.now();
+  //if(currentTime > lastTime + delay)
+    lastTime = currentTime;
+    removeElements();
+    let suggestions = await getSuggestions(value)
+    console.log(suggestions);
+    for(let count = 0; count < suggestions.length; count++)
+    {
+      let listItem = document.createElement("li");
+      listItem.classList.add("list-items");
+      listItem.style.cursor = "pointer";
+      listItem.setAttribute("onclick", "displayNames('" + suggestions[count] + "')");
+      listItem.innerHTML = "<b>" + suggestions[count] + "</b>";
+      document.querySelector(".list").appendChild(listItem);
+    }
+};
+
+function displayNames(value)
+{
+  input.value = value;
+  removeElements();
+}
+
+function removeElements()
+{
+  let items = document.querySelectorAll(".list-items");
+  items.forEach((item) => {
+    item.remove();
+  });
+}*/

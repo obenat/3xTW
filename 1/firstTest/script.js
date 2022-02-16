@@ -327,32 +327,61 @@ async function enter(value1, value2)
 
     if(value1 != "" && value2 != "")
     {
+        document.getElementById("oneloc").style.display='none';
         value1 = await getStationProposals(value1);
         value2 = await getStationProposals(value2);
         console.log(value1);
         console.log(value2);
         displayweather(value1, value2);
+        document.getElementById("demoB").style.display='flex';
+        document.getElementById("demoA").style.display='flex';
         displayroute(getTransportationRoute(await getDataFromURL(getEFARouteURL(value1[0].location, value1[0].station, value2[0].location, value2[0].station))).slice(0,6));
     }
     else if(value1 != "")
     {
+        document.getElementById("routeDiv").style.display='none';
+        document.getElementById("oneloc").style.display='block';
+        document.getElementById("weatherloc").style.display='none';
         value1 = await getStationProposals(value1);
         output = getmotFromStation(await getDataFromURL(getEFAStationURL(value1[0].location, value1[0].station)));
-        console.log(output);
+        displaysingle(output);
     }
-    else{
-      let test = getSuggestions(value2);
-    console.log(test);
-    }
+    /*else
+      let test = getSuggestions(value2);*/
 
 }
+
+function displaysingle(data){
+   for(let i=0; i<data.length;i++){
+     var newdiv=document.createElement("div");
+     newdiv.className='sminfo upperu';
+     newdiv.style.display='flex';
+     var u1=document.createElement("div");
+     var u2=document.createElement("div");
+     var u3=document.createElement("div");
+     var u4=document.createElement("div");
+     u1.className="udivs";
+     u2.className="udivs";
+     u3.className="udivs";
+     u4.className="udivs";
+     u1.textContent=data[i].startTime;
+     u2.textContent=data[i].transportationNumber;
+     u3.textContent=data[i].endLocation;
+     u4.textContent=data[i].transportationType;
+     newdiv.appendChild(u1);
+     newdiv.appendChild(u2);
+     newdiv.appendChild(u3);
+     newdiv.appendChild(u4);
+     document.getElementById("oneloc").appendChild(newdiv);
+   }
+ }
 
 /**
  * Zeigt die gesammten Divs der Routen an
  * @param {*} data, Array von den Routen
  */
 function displayroute(data){
-  console.log(data);
+  document.getElementById("weatherloc").style.display='flex';
   for(let i=0;i<data.length;i++){
     document.getElementsByClassName("names")[i].innerHTML='';
     document.getElementsByClassName("sep")[i].innerHTML=''
@@ -371,6 +400,7 @@ function displayroute(data){
 
       currentDiv=document.getElementById("route"+i);
       currentDiv.style.display="block";
+      document.getElementsByClassName("seemore")[i].style.display="block";
       document.getElementsByClassName("smbtn")[i].style.display="block";
       currentStation=data[i].stations;
       currentDiv.getElementsByClassName("sep")[0].textContent=data[i].totalDuration+"h";
@@ -502,29 +532,29 @@ function insertCells(table, data){
 
 /**
  * Erstellt einen EventListener für das obere Eingabefeld
- */
+ *//*
 input1.addEventListener("keyup", async (e) => 
 {
   setSuggestions(input1);
-});
+});*/
 
 /**
  * Erstellt einen EventListener für das untere Eingabefeld
- */
+ *//*
 input2.addEventListener("keyup", async (e) => 
 {
   setSuggestions(input2);
-});
+});*/
 
 /**
  * Erstellt eine Liste mit den gefundenen Vorschlägen, die der Benutzer auwählen kann
  * @param {*} input, Feld in der die Eingabe erfolgt
- */
+ *//*
 async function setSuggestions(input)
 {
-  let currentTime = Date.now();
+  //let currentTime = Date.now();
   //if(currentTime > lastTime + delay)
-    lastTime = currentTime;
+    //lastTime = currentTime;
     removeElements();
     let suggestions = await getSuggestions(input.value)
     for(let count = 0; count < suggestions.length; count++)
@@ -536,26 +566,26 @@ async function setSuggestions(input)
       listItem.innerHTML = "<b>" + suggestions[count] + "</b>";
       document.querySelector(".list").appendChild(listItem);
     }
-};
+};*/
 
 /**
  * Ausgewählte Daten werden in das Inputfeld geschrieben
  * @param {*} input, Feld in der die Eingabe erfolgt
  * @param {*} suggestion, Vorschlag der vom Benutzer ausgewählt wurde
- */
+ *//*
 function displayNames(input, suggestion)
 {
   input.value = suggestion;
   removeElements();
-}
+}*/
 
 /**
  * Entfernt die Elemente der Liste
- */
+ *//*
 function removeElements()
 {
   let items = document.querySelectorAll(".list-items");
   items.forEach((item) => {
     item.remove();
   });
-}
+}*/
