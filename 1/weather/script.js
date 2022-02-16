@@ -350,7 +350,10 @@ async function enter(value1, value2)
       let test = getSuggestions(value2);*/
 
 }
-
+/**
+ * Stellt die Busse, die an der ausgewähtlen Station vorbeifahren, Grafisch dar 
+ * @param {*} data Array mit den Bussen
+ */
 function displaysingle(data){
    for(let i=0; i<data.length;i++){
      var newdiv=document.createElement("div");
